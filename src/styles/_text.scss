@@ -1,0 +1,31 @@
+
+a {
+  color: $blue;
+  text-decoration: none;
+
+  &:hover {
+    color: $green;
+  }
+}
+
+.black { color: $black; }
+.blue { color: $blue; }
+.green { color: $green; }
+.white { color: $white; }
+.yellow { color: $yellow; }
+
+.bold { font-weight: $bold; }
+.thin { font-weight: $thin; }
+
+.bg-black { background-color: $black; }
+.bg-blue { background-color: $blue; }
+.bg-green { background-color: $green; }
+.bg-white { background-color: $white; }
+
+.gradient {
+  background-image: linear-gradient(to right, $yellow, $green);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.text-center { text-align: center; }

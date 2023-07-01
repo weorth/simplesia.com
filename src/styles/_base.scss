@@ -1,0 +1,15 @@
+
+html, body {
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100vw;
+
+  @media (max-width: $sm) {
+    font-size: 12px;
+  }
+}

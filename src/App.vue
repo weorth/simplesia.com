@@ -1,47 +1,50 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import Links from './components/Links.vue'
+import Logo from './components/Logo.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="">
+    <div class="align-center flex-row justify-space-between header">
+      <Logo />
+      <Links />
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <div class="body">
+      <router-view></router-view>
+    </div>
+    <div class="align-center flex-row justify-space-between footer">
+      <p class="bold copyright">Copyright &copy; 2023 Simplesia</p>
+      <Links />
+    </div>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style lang="scss" scoped>
+$sm: 960px;
+
+.body {
+  height: 90vh;
+  max-height: 90vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.footer {
+  height: 5vh;
+  padding: 0 2em;
+
+  .copyright {
+    font-size: 1.15em;
+
+    @media (max-width: $sm) {
+      font-size: 0.75em;
+    }
+  }
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.header {
+  font-size: 1.25em;
+  height: 5vh;
+  padding: 0 1em;
 }
 </style>
