@@ -1,0 +1,44 @@
+
+table {
+  tr {
+    @media (max-width: $sm) {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1em;
+      padding: 0.25em;
+    }
+
+    &:nth-child(even) {
+      background-color: darken($white, 5%);
+    }
+
+    th {
+      text-align: left;
+
+      &:first-child {
+        width: 33%;
+      }
+
+      @media (max-width: $sm) {
+        padding-left: 1em;
+
+        &:first-child {
+          padding-left: 0;
+        }
+      }
+    }
+
+    td {
+      text-align: left;
+
+      @media (max-width: $sm) {
+        padding-left: 1em;
+
+        &:first-child {
+          font-weight: bold;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,17 +1,25 @@
 <script setup>
+import { useRouter } from 'vue-router'
+
+import Page from '../../components/Page.vue'
+
+const router = useRouter()
+
+function onSubmit(ev) {
+  ev.preventDefault()
+  ev.stopPropagation()
+
+  router.push('/private')
+}
 </script>
 
 <template>
-  <div class="page">
+  <Page>
     <div class="align-center flex-col flex-full justify-center centered">
       <div class="card">
         <form>
           <fieldset>
-            <legend>Register</legend>
-            <div class="input">
-              <label>Email Address:</label>
-              <input id="email" name="email" type="email" />
-            </div>
+            <legend>Login</legend>
             <div class="input">
               <label>Username:</label>
               <input id="username" name="username" type="text" />
@@ -20,24 +28,18 @@
               <label>Password:</label>
               <input id="password" name="password" type="password" />
             </div>
-            <div class="input">
-              <label>Confirm Password:</label>
-              <input id="confirm" name="confirm" type="password" />
-            </div>
           </fieldset>
-          <button>Submit</button>
+          <button @click="onSubmit">Submit</button>
           <div class="align-center flex-row justify-center">
-            <router-link to="/login">Already have an account? Login</router-link>
+            <router-link to="/register">Need an account? Register</router-link>
           </div>
         </form>
       </div>
     </div>
-  </div>
+  </Page>
 </template>
 
 <style lang="scss" scoped>
-$sm: 960px;
-
 .page {
   height: 90vh;
   margin: 0 auto;
@@ -61,6 +63,11 @@ form {
     margin-top: 1em;
   }
 
+  button, .btn {
+    margin: 1em 0 0 0;
+    width: 100%;
+  }
+
   .input {
     display: flex;
     flex-direction: column;
@@ -70,11 +77,6 @@ form {
       font-size: 1.25em;
       line-height: 2em;
     }
-  }
-
-  button, .btn {
-    margin: 1em 0 0 0;
-    width: 100%;
   }
 }
 </style>

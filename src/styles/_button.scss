@@ -12,6 +12,7 @@ button, .btn {
   text-align: center;
 
   @media (max-width: $sm) {
+    margin: 1vh 2vw;
     width: 100%;
   }
 

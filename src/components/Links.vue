@@ -12,8 +12,6 @@
 </template>
 
 <style lang="scss" scoped>
-$sm: 960px;
-
 .links {
   .link {
     font-size: 1em;

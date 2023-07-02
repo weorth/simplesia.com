@@ -1,6 +1,12 @@
 <script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
 import Links from './components/Links.vue'
 import Logo from './components/Logo.vue'
+import PrivateLinks from './components/PrivateLinks.vue'
+
+const isPrivate = computed(() => useRoute().path.indexOf('/private') !== -1)
 </script>
 
 <template>
@@ -9,7 +15,11 @@ import Logo from './components/Logo.vue'
       <Logo />
       <Links />
     </div>
-    <div class="body">
+    <div v-if="isPrivate" class="align-center flex-row justify-space-between sub-header">
+      <div />
+      <PrivateLinks />
+    </div>
+    <div :class="['body', {'private': isPrivate}]">
       <router-view></router-view>
     </div>
     <div class="align-center flex-row justify-space-between footer">
@@ -20,13 +30,16 @@ import Logo from './components/Logo.vue'
 </template>
 
 <style lang="scss" scoped>
-$sm: 960px;
-
 .body {
   height: 90vh;
+  margin: 0 auto;
   max-height: 90vh;
   overflow-x: hidden;
   overflow-y: auto;
+
+  &.private {
+    height: 85vh !important;
+  }
 }
 
 .footer {
@@ -44,6 +57,13 @@ $sm: 960px;
 
 .header {
   font-size: 1.25em;
+  height: 5vh;
+  padding: 0 1em;
+}
+
+.sub-header {
+  background-color: darken($white, 5%);
+  font-size: 1.15em;
   height: 5vh;
   padding: 0 1em;
 }

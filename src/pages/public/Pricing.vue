@@ -1,8 +1,9 @@
 <script setup>
+import Page from '../../components/Page.vue'
 </script>
 
 <template>
-  <div class="page">
+  <Page>
     <div class="flex-col flex-full">
       <h1>Pricing</h1>
       <p>
@@ -304,12 +305,10 @@
         <router-link class="btn" to="/register">Sign Up</router-link>
       </div>
     </div>
-  </div>
+  </Page>
 </template>
 
 <style lang="scss" scoped>
-$sm: 960px;
-
 .page {
   margin: 0 auto;
   max-width: 80vw;
@@ -317,50 +316,6 @@ $sm: 960px;
   .btn {
     @media (max-width: $sm) {
       margin: 2em 0;
-    }
-  }
-}
-
-table {
-  tr {
-    @media (max-width: $sm) {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1em;
-      padding: 0.25em;
-    }
-
-    &:nth-child(even) {
-      background-color: darken(white, 5%);
-    }
-
-    th {
-      text-align: left;
-
-      &:first-child {
-        width: 33%;
-      }
-
-      @media (max-width: $sm) {
-        padding-left: 1em;
-
-        &:first-child {
-          padding-left: 0;
-        }
-      }
-    }
-
-    td {
-      text-align: left;
-
-      @media (max-width: $sm) {
-        padding-left: 1em;
-
-        &:first-child {
-          font-weight: bold;
-          padding-left: 0;
-        }
-      }
     }
   }
 }

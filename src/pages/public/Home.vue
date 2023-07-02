@@ -1,9 +1,11 @@
 <script setup>
+import Animation from '../../components/Animation.vue'
+import Page from '../../components/Page.vue'
 </script>
 
 <template>
   <div>
-    <div class="page">
+    <Page>
       <div class="flex-row justify-space-between hero">
         <div class="align-center flex-col flex-full justify-center">
           <h1 class="green">
@@ -21,16 +23,10 @@
           </div>
         </div>
         <div class="align-center flex-col justify-space-around image">
-          <lottie-player
-            autoplay
-            background="transparent"
-            loop
-            speed="1"
-            src="https://assets6.lottiefiles.com/packages/lf20_kUtZCR7Zyk.json"
-            style="width: 100%; height: 100%;"></lottie-player>
+          <Animation src="https://assets6.lottiefiles.com/packages/lf20_kUtZCR7Zyk.json" />
         </div>
       </div>
-    </div>
+    </Page>
     <div class="align-center bg-blue flex-row justify-space-around white shout">
       <div>Something great goes here!</div>
     </div>
@@ -41,56 +37,45 @@
 </template>
 
 <style lang="scss" scoped>
-$sm: 960px;
+h1 {
+  font-size: 2.5em;
+}
 
-.page {
-  margin: 0 auto;
-  max-width: 80vw;
+p {
+  font-size: 1.25em;
+}
+
+.btn {
+  @media (max-width: $sm) {
+    margin: 1vh 2vw;
+    width: 80vw;
+  }
+}
+
+.hero {
+  @media (max-width: $sm) {
+    align-items: start;
+    flex-direction: column;
+    max-width: 80vw;
+
+    h1 { margin: 1em; }
+    p { margin: 1em; }
+  }
+
+  .actions {
+    @media (max-width: $sm) {
+      flex-direction: column;
+    }
+  }
+}
+
+.image {
+  max-height: 40vh;
+  max-width: 40vw;
 
   @media (max-width: $sm) {
-    max-width: none;
-  }
-
-  .btn {
-    @media (max-width: $sm) {
-      margin: 1vh 2vw;
-      width: 80vw;
-    }
-  }
-
-  h1 {
-    font-size: 2.5em;
-  }
-
-  p {
-    font-size: 1.25em;
-  }
-
-  .hero {
-    @media (max-width: $sm) {
-      align-items: start;
-      flex-direction: column;
-      max-width: 80vw;
-
-      h1 { margin: 1em; }
-      p { margin: 1em; }
-    }
-
-    .actions {
-      @media (max-width: $sm) {
-        flex-direction: column;
-      }
-    }
-  }
-
-  .image {
-    max-height: 40vh;
-    max-width: 40vw;
-
-    @media (max-width: $sm) {
-      max-height: 90vh;
-      max-width: 90vw;
-    }
+    max-height: 90vh;
+    max-width: 90vw;
   }
 }
 

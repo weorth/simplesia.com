@@ -1,8 +1,9 @@
 <script setup>
+import Page from '../../components/Page.vue'
 </script>
 
 <template>
-  <div class="page">
+  <Page>
     <div class="flex-col flex-full">
       <h1>Services</h1>
 
@@ -97,12 +98,10 @@
         <router-link class="btn" to="/register">Sign Up</router-link>
       </div>
     </div>
-  </div>
+  </Page>
 </template>
 
 <style lang="scss" scoped>
-$sm: 960px;
-
 .page {
   margin: 0 auto;
   max-width: 80vw;
