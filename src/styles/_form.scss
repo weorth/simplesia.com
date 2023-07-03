@@ -1,0 +1,18 @@
+form {
+  fieldset {
+    border: 1px solid darken($white, 10%);
+    margin-bottom: 1em;
+    padding: 1em;
+  }
+
+  input {
+    font-size: 1.25em;
+    line-height: 2em;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+  }
+}

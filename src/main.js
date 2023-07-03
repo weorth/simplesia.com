@@ -14,6 +14,7 @@ import Register from './pages/public/Register.vue'
 import Services from './pages/public/Services.vue'
 
 import Billing from './pages/private/Billing.vue'
+import Invoice from './pages/private/Invoice.vue'
 import Keys from './pages/private/Keys.vue'
 import Logout from './pages/private/Logout.vue'
 import Usage from './pages/private/Usage.vue'
@@ -51,6 +52,7 @@ const router = createRouter({
 
         { path: '/private', component: Usage },
         { path: '/private/billing', component: Billing },
+        { path: '/private/invoice', component: Invoice },
         { path: '/private/keys', component: Keys },
         { path: '/private/logout', component: Logout },
     ],

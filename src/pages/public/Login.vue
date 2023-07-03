@@ -20,17 +20,17 @@ function onSubmit(ev) {
         <form>
           <fieldset>
             <legend>Login</legend>
-            <div class="input">
+            <div class="field">
               <label>Username:</label>
               <input id="username" name="username" type="text" />
             </div>
-            <div class="input">
+            <div class="field">
               <label>Password:</label>
               <input id="password" name="password" type="password" />
             </div>
           </fieldset>
-          <button @click="onSubmit">Submit</button>
-          <div class="align-center flex-row justify-center">
+          <div class="align-center flex-col justify-center">
+            <button @click="onSubmit">Submit</button>
             <router-link to="/register">Need an account? Register</router-link>
           </div>
         </form>
@@ -55,28 +55,6 @@ function onSubmit(ev) {
 
   .centered {
     height: 90vh;
-  }
-}
-
-form {
-  a {
-    margin-top: 1em;
-  }
-
-  button, .btn {
-    margin: 1em 0 0 0;
-    width: 100%;
-  }
-
-  .input {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1em;
-
-    input {
-      font-size: 1.25em;
-      line-height: 2em;
-    }
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <script setup>
 import Page from '../../components/Page.vue'
 
-function onSubmit(ev) {
+function onAdd(ev) {
   ev.preventDefault()
   ev.stopPropagation()
 
@@ -13,7 +13,7 @@ function onSubmit(ev) {
   <Page>
     <div class="align-center flex-row justify-space-between">
       <h1>Keys</h1>
-      <button @click="onSubmit">Add Key</button>
+      <button @click="onAdd">Add Key</button>
     </div>
     <table>
       <tr>
@@ -54,6 +54,12 @@ table {
 
   @media (max-width: $sm) {
     width: 80vw;
+  }
+}
+
+.flex-row {
+  @media (max-width: $sm) {
+    flex-direction: column;
   }
 }
 </style>
