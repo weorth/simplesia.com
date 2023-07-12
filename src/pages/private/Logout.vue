@@ -22,12 +22,12 @@ function onYes(ev) {
 
 <template>
   <Page>
-    <h1>Logout</h1>
+    <h1><t tag="logout" /></h1>
     <div class="align-center flex-col justify-center">
-      <p>Are you sure you want to logout of the system?</p>
+      <p><t tag="logout.confirmation" /></p>
       <div class="align-center flex-row justify-space-evenly">
-        <button @click="onYes">Yes</button>
-        <button @click="onNo" class="yellow">No</button>
+        <button @click="onYes"><t tag="yes" /></button>
+        <button @click="onNo" class="yellow"><t tag="no" /></button>
       </div>
     </div>
   </Page>

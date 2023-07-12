@@ -12,14 +12,14 @@ function onAdd(ev) {
 <template>
   <Page>
     <div class="align-center flex-row justify-space-between">
-      <h1>Keys</h1>
-      <button @click="onAdd">Add Key</button>
+      <h1><t tag="key" qty="2" /></h1>
+      <button @click="onAdd"><t tag="key.add" /></button>
     </div>
     <table>
       <tr>
-        <th>Product</th>
-        <th>Key</th>
-        <th>Requests</th>
+        <th><t tag="api" /></th>
+        <th><t tag="key" /></th>
+        <th><t tag="request" /></th>
         <th></th>
       </tr>
       <tr>

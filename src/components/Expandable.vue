@@ -20,15 +20,19 @@ function onToggle(ev) {
 <template>
   <div class="">
     <div class="align-center flex-row justify-space-between">
-      <h2>{{ title }}</h2>
+      <h2><t :tag="title" /></h2>
       <a @click="onToggle" href="#">
-        <div v-if="show" class="flex-row thin">Hide <EyeSlashIcon /></div>
-        <div v-else class="flex-row thin">Show <EyeIcon /></div>
+        <div v-if="show" class="flex-row thin">
+          <t tag="hide" /> <EyeSlashIcon />
+        </div>
+        <div v-else class="flex-row thin">
+          <t tag="show" /> <EyeIcon />
+        </div>
       </a>
     </div>
     <slot v-if="show"></slot>
     <div v-else class="text-center thin">
-      This area's content is currently hidden.
+      <t tag="hidden" />
     </div>
   </div>
 </template>

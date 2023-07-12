@@ -17,19 +17,19 @@ function onClose(ev) {
 <template>
   <Page>
     <div class="align-center flex-row justify-space-between">
-      <h1>Invoice</h1>
+      <h1><t tag="invoice" /></h1>
       <a @click="onClose" href="#" class="align-center flex-row icon">
-        <span class="thin">Close</span>
+        <span class="thin"><t tag="close" /></span>
         <XMarkIcon />
       </a>
     </div>
     <div class="card">
       <div class="align-center flex-row justify-space-between">
         <div class="flex-col">
-          <span>Number: 234234234</span>
-          <span>Date: 2023/06</span>
-          <span>From: Simplesia</span>
-          <span>To: Customer Name</span>
+          <span><t tag="number" />: 234234234</span>
+          <span><t tag="date" />: 2023/06</span>
+          <span><t tag="from" />: <t tag="company" /></span>
+          <span><t tag="to" />: Customer Name</span>
         </div>
         <h3 class="status red">Waiting</h3>
         <div class="total">
@@ -38,10 +38,10 @@ function onClose(ev) {
       </div>
       <table>
         <tr>
-          <th>Product</th>
-          <th>Requests</th>
-          <th>Cost</th>
-          <th>Tax</th>
+          <th><t tag="api" /></th>
+          <th><t tag="request" qty="2" /></th>
+          <th><t tag="cost" /></th>
+          <th><t tag="tax" /></th>
         </tr>
         <tr>
           <td>License plates (BR)</td>

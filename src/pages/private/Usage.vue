@@ -16,7 +16,7 @@ const data = ref({
 
 <template>
   <Page>
-    <h1>Usage</h1>
+    <h1><t tag="usage" /></h1>
     <div class="flex-row">
       <div class="flex-full">
         <LineGraph :data="data" />
@@ -24,9 +24,9 @@ const data = ref({
       <div class="flex-full">
         <table>
           <tr>
-            <th>Product</th>
-            <th>Requests</th>
-            <th>Cost</th>
+            <th><t tag="api" /></th>
+            <th><t tag="request" qty="2" /></th>
+            <th><t tag="cost" /></th>
           </tr>
           <tr>
             <td>License plates (BR)</td>

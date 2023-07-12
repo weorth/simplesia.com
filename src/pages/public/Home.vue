@@ -4,22 +4,23 @@ import Page from '../../components/Page.vue'
 </script>
 
 <template>
-  <div>
+  <div class="flex-col flex-full">
     <Page>
       <div class="flex-row justify-space-between hero">
         <div class="align-center flex-col flex-full justify-center">
           <h1 class="green">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <t tag="home.title" />
           </h1>
           <p>
-            Nunc tincidunt malesuada leo, eu porta magna. Sed sodales condimentum semper.
-            Fusce hendrerit vitae purus quis posuere. Sed dictum in metus id dictum. Mauris
-            luctus, ipsum at pharetra rhoncus, risus erat fringilla urna, ac porttitor orci
-            quam laoreet sapien.
+            <t tag="home.subtitle" />
           </p>
           <div class="align-center flex-row justify-space-around actions">
-            <router-link class="btn" to="/login">Fermentum</router-link>
-            <router-link class="btn yellow" to="/register">Aliquam nec</router-link>
+            <router-link class="btn" to="/login">
+              <t tag="login" />
+            </router-link>
+            <router-link class="btn yellow" to="/register">
+              <t tag="register" />
+            </router-link>
           </div>
         </div>
         <div class="align-center flex-col justify-space-around image">
@@ -27,11 +28,22 @@ import Page from '../../components/Page.vue'
         </div>
       </div>
     </Page>
-    <div class="align-center bg-blue flex-row justify-space-around white shout">
-      <div>Something great goes here!</div>
+    <div class="align-center bg-blue flex-col justify-space-around white shout">
+      <div>
+        <h3><t tag="home.point" /></h3>
+        <ul>
+          <li><t tag="home.point1" /></li>
+          <li><t tag="home.point2" /></li>
+          <li><t tag="home.point3" /></li>
+          <li><t tag="home.point4" /></li>
+          <li><t tag="home.point5" /></li>
+          <li><t tag="home.point6" /></li>
+          <li><t tag="home.point7" /></li>
+        </ul>
+      </div>
     </div>
-    <div class="align-center flex-row justify-space-around">
-      <div>They are the best!!!</div>
+    <div class="align-center flex-col flex-full justify-space-around">
+      <div><t tag="home.bottom" /></div>
     </div>
   </div>
 </template>

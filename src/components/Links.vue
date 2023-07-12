@@ -1,13 +1,29 @@
 <script setup>
+defineProps({
+  footer: { type: Boolean, default: false },
+})
 </script>
 
 <template>
   <span class="align-center flex-row justify-space-evenly links">
-    <router-link class="link" to="/">Home</router-link>
-    <router-link class="link" to="/services">Services</router-link>
-    <router-link class="link" to="/products">Products</router-link>
-    <router-link class="link" to="/pricing">Pricing</router-link>
-    <router-link class="link" to="/login">Login</router-link>
+    <router-link class="link" to="/">
+      <t tag="home" />
+    </router-link>
+    <router-link class="link" to="/apis">
+      <t tag="api" qty="2" />
+    </router-link>
+    <router-link class="link" to="/support">
+      <t tag="support" />
+    </router-link>
+    <router-link class="link" to="/login">
+      <t tag="account" />
+    </router-link>
+    <router-link v-if="footer" class="link" to="/privacy">
+      <t tag="privacy" />
+    </router-link>
+    <router-link v-if="footer" class="link" to="/terms">
+      <t tag="terms" />
+    </router-link>
   </span>
 </template>
 

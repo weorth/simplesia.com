@@ -19,19 +19,19 @@ function onSubmit(ev) {
       <div class="card">
         <form>
           <fieldset>
-            <legend>Login</legend>
+            <legend><t tag="login" /></legend>
             <div class="field">
-              <label>Username:</label>
+              <label><t tag="username" />:</label>
               <input id="username" name="username" type="text" />
             </div>
             <div class="field">
-              <label>Password:</label>
+              <label><t tag="password" />:</label>
               <input id="password" name="password" type="password" />
             </div>
           </fieldset>
           <div class="align-center flex-col justify-center">
-            <button @click="onSubmit">Submit</button>
-            <router-link to="/register">Need an account? Register</router-link>
+            <button @click="onSubmit"><t tag="submit" /></button>
+            <router-link to="/register"><t tag="register.needed" /></router-link>
           </div>
         </form>
       </div>

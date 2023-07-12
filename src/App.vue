@@ -2,17 +2,20 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
+import Flags from './components/Flags.vue'
 import Links from './components/Links.vue'
 import Logo from './components/Logo.vue'
 import PrivateLinks from './components/PrivateLinks.vue'
 
 const isPrivate = computed(() => useRoute().path.indexOf('/private') !== -1)
+const year = computed(() => (new Date()).getFullYear())
 </script>
 
 <template>
   <div class="">
     <div class="align-center flex-row justify-space-between header">
       <Logo />
+      <Flags />
       <Links />
     </div>
     <div v-if="isPrivate" class="align-center flex-row justify-space-between sub-header">
@@ -23,14 +26,15 @@ const isPrivate = computed(() => useRoute().path.indexOf('/private') !== -1)
       <router-view></router-view>
     </div>
     <div class="align-center flex-row justify-space-between footer">
-      <p class="bold copyright">Copyright &copy; 2023 Simplesia</p>
-      <Links />
+      <p class="bold copyright"><t tag="copyright" /> &copy; {{ year }} <t tag="company" /></p>
+      <Links footer />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .body {
+  display: flex;
   height: 90vh;
   margin: 0 auto;
   max-height: 90vh;

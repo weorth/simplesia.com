@@ -150,6 +150,26 @@ export const Colors = {
   YellowGreen: '#9ACD32',
 }
 
+// The model key will be used to generate the translated name and the value should
+// follow the format of:
+//    [ $/req, avg. latency ms ]
+export const Models = {
+  // Human
+  'h_age_cl': [0.003, 500],
+  'h_body_pe': [0.005, 750],
+  'h_emotion_cl': [0.003, 500],
+  'h_face_od': [0.005, 1500],
+  'h_hair_od': [0.005, 1500],
+  'h_hair_type_cl': [0.003, 500],
+  'h_hand_pe': [0.005, 750],
+  // Vehicle
+  'v_damage_od': [0.005, 1500],
+  'v_plate_od': [0.005, 1500],
+  'v_plate_digits_od': [0.005, 1500],
+  'v_type_cl': [0.003, 500],
+}
+
 export default {
   Colors,
+  Models,
 }

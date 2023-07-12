@@ -4,7 +4,7 @@ import Page from '../../components/Page.vue'
 
 <template>
   <Page>
-    <t tag="forgot" />
+    <t tag="support" />
   </Page>
 </template>
 

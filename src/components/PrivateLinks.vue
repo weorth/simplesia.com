@@ -3,10 +3,10 @@
 
 <template>
   <span class="align-center flex-row justify-space-evenly links">
-    <router-link class="link" to="/private">Dashboard</router-link>
-    <router-link class="link" to="/private/billing">Billing</router-link>
-    <router-link class="link" to="/private/keys">Keys</router-link>
-    <router-link class="link" to="/private/logout">Logout</router-link>
+    <router-link class="link" to="/private"><t tag="dashboard" /></router-link>
+    <router-link class="link" to="/private/billing"><t tag="billing" /></router-link>
+    <router-link class="link" to="/private/keys"><t tag="key" qty="2" /></router-link>
+    <router-link class="link" to="/private/logout"><t tag="logout" /></router-link>
   </span>
 </template>
 

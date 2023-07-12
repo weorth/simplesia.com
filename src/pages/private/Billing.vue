@@ -17,78 +17,78 @@ function onSave(ev) {
 <template>
   <Page>
     <div class="align-center flex-row justify-space-between">
-      <h1>Keys</h1>
-      <button @click="onSave">Save Changes</button>
+      <h1><t tag="billing" /></h1>
+      <button @click="onSave"><t tag="save" /></button>
     </div>
-    <Expandable title="Payment Information">
+    <Expandable title="payment.information">
       <form>
         <fieldset>
-          <legend>Personal Information</legend>
+          <legend><t tag="personal.information" /></legend>
           <div class="flex-row">
             <div class="flex-full field">
-              <label>First Name:</label>
+              <label><t tag="name.first" />:</label>
               <input id="fname" name="fname" type="text" />
             </div>
             <div class="flex-full field">
-              <label>Last Name:</label>
+              <label><t tag="name.last" />:</label>
               <input id="lname" name="lname" type="text" />
             </div>
           </div>
           <div class="field">
-            <label>Street 1:</label>
+            <label><t tag="street.1" />:</label>
             <input id="street1" name="street1" type="text" />
           </div>
           <div class="field">
-            <label>Street 2:</label>
+            <label><t tag="street.2" />:</label>
             <input id="street2" name="street2" type="text" />
           </div>
           <div class="flex-row">
             <div class="flex-full field">
-              <label>City:</label>
+              <label><t tag="city" />:</label>
               <input id="city" name="city" type="text" />
             </div>
             <div class="flex-full field">
-              <label>State:</label>
+              <label><t tag="state" />:</label>
               <input id="state" name="state" type="text" />
             </div>
             <div class="field">
-              <label>Zip:</label>
+              <label><t tag="zip" />:</label>
               <input id="zip" name="zip" type="text" />
             </div>
           </div>
         </fieldset>
         <fieldset>
-          <legend>Credit Card Information</legend>
+          <legend><t tag="cc.information" /></legend>
           <div class="flex-row">
             <div class="flex-full field">
-              <label>Card Number:</label>
+              <label><t tag="pan" />:</label>
               <input id="pan" name="pan" type="password" />
             </div>
             <div class="field">
-              <label>CCV:</label>
+              <label><t tag="ccv" />:</label>
               <input id="ccv" name="ccv" type="text" />
             </div>
           </div>
           <div class="flex-row">
             <div class="flex-full field">
-              <label>Year:</label>
+              <label><t tag="year" />:</label>
               <input id="year" name="year" type="text" />
             </div>
             <div class="flex-full field">
-              <label>Month:</label>
+              <label><t tag="month" />:</label>
               <input id="month" name="month" type="text" />
             </div>
           </div>
         </fieldset>
       </form>
     </Expandable>
-    <h2>Invoices</h2>
+    <h2><t tag="invoice" qty="2" /></h2>
     <table>
       <tr>
-        <th>Year</th>
-        <th>Month</th>
-        <th>Amount</th>
-        <th>Status</th>
+        <th><t tag="year" /></th>
+        <th><t tag="month" /></th>
+        <th><t tag="cost" /></th>
+        <th><t tag="status" /></th>
         <th></th>
       </tr>
       <tr>
@@ -104,7 +104,7 @@ function onSave(ev) {
         <td>$234.45</td>
         <td>Waiting</td>
         <td>
-          <router-link to="/private/invoice">View Details</router-link>
+          <router-link to="/private/invoice"><t tag="view" /></router-link>
         </td>
       </tr>
       <tr>
@@ -113,7 +113,7 @@ function onSave(ev) {
         <td>$225.03</td>
         <td>Paid</td>
         <td>
-          <router-link to="/private/invoice">View Details</router-link>
+          <router-link to="/private/invoice"><t tag="view" /></router-link>
         </td>
       </tr>
       <tr>
@@ -122,7 +122,7 @@ function onSave(ev) {
         <td>$113.28</td>
         <td>Paid</td>
         <td>
-          <router-link to="/private/invoice">View Details</router-link>
+          <router-link to="/private/invoice"><t tag="view" /></router-link>
         </td>
       </tr>
     </table>
