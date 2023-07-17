@@ -1,8 +1,8 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
-import en from './en.json'
-import pt from './pt.json'
+import en from './en'
+import pt from './pt'
 
 export const useLanguageStore = defineStore('i18n', () => {
   const language = ref('en')
@@ -29,7 +29,9 @@ export const useLanguageStore = defineStore('i18n', () => {
     }
 
     if (Array.isArray(options)) {
-      message = options[qty-1]
+      message = qty > options.length
+        ? options[options.length-1]
+        : options[qty-1]
     } else {
       message = options
     }

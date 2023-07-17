@@ -1,0 +1,38 @@
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+
+  .tab-body {
+    border: 1px solid darken($white, 10%);
+    border-radius: 0 1em 1em 1em;
+    margin: 0 0 1em 0;
+    padding: 1em;
+  }
+
+  .tab-list {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+
+    .tab {
+      background-color: darken($white, 5%);
+      border: 1px solid darken($white, 10%);
+      border-bottom: 1px solid darken($white, 5%);
+      border-radius: 1em 1em 0 0;
+      cursor: pointer;
+      margin: 1em 0.5em -1px 0;
+      padding: 1em;
+      z-index: 99;
+
+      &:hover {
+        background-color: darken($white, 5%);
+      }
+
+      &.active {
+        background-color: $white;
+        border-bottom: none;
+      }
+    }
+  }
+}

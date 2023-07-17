@@ -2,7 +2,8 @@
 import { ref } from 'vue'
 import { useLanguageStore } from '../../i18n/store'
 
-import { Models } from '../../config'
+import { Categories, Models } from '../../mock'
+import Expandable from '../../components/Expandable.vue'
 import Page from '../../components/Page.vue'
 
 const store = useLanguageStore()
@@ -15,24 +16,27 @@ for (let [model, params] of Object.entries(Models)) {
   const parts = model.split('_')
   _params.set(model, params)
 
+  const category = parts[0]
+  _categories.add(category)
+
   const names = parts.map(tag => store.translate(tag, 1))
   _names.set(model, names)
 
-  _categories.add(names[0])
-
-  if (!_models.has(names[0])) {
-    _models.set(names[0], [])
+  if (!_models.has(category)) {
+    _models.set(category, [])
   }
 
-  const tmpModels = _models.get(names[0])
+  const tmpModels = _models.get(category)
   tmpModels.push(model)
-  _models.set(names[0], tmpModels)
+  _models.set(category, tmpModels)
 }
-
-const categories = ref(Array.from(_categories))
 
 function getModels(category) {
   return _models.get(category)
+}
+
+function hasModels(category) {
+  return _models.has(category)
 }
 </script>
 
@@ -42,26 +46,35 @@ function getModels(category) {
       <h1><t tag="api" qty="2" /></h1>
       <p><t tag="apis.summary" /></p>
 
-      <div v-for="(cat, idx) in categories" :key="idx">
-        <h2>{{ cat }}</h2>
-        <table>
-          <tr>
-            <th><t tag="name" /></th>
-            <th><t tag="cost" /></th>
-            <th><t tag="latency" /></th>
-          </tr>
-          <tr v-for="(model, idx) in getModels(cat)" :key="idx">
-            <td>{{ _names.get(model).join(' ') }}</td>
-            <td><t tag="$" />{{ _params.get(model)[0] }}/req</td>
-            <td>{{ _params.get(model)[1] }}ms</td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="align-center flex-row justify-space-around">
-        <router-link class="btn" to="/register">
-          <t tag="started" />
-        </router-link>
+      <div v-for="(category, index) in Categories" :key="index">
+        <Expandable :show="hasModels(category)" :title="category">
+          <div v-if="hasModels(category)" class="align-center flex-row flex-wrap justify-space-evenly">
+            <div v-for="(model, idx) in getModels(category)" :key="idx">
+              <div class="align-center card flex-col text-center">
+                <h3>{{ _names.get(model).join(' ') }}</h3>
+                <div class="align-center image justify-center">
+                  <img :src="_params.get(model)[2]" />
+                </div>
+                <div class="flex-row flex-full justify-space-evenly">
+                  <div class="flex-col m-t">
+                    <span class="thin"><t tag="cost" /></span>
+                    <span class="bold"><t tag="$" />{{ _params.get(model)[0] }}/req</span>
+                  </div>
+                  <div class="flex-col m-t">
+                    <span class="thin"><t tag="latency" /></span>
+                    <span class="bold">{{ _params.get(model)[1] }}ms</span>
+                  </div>
+                </div>
+                <div class="m-t">
+                  <router-link to="/login"><t tag="started" /></router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="coming text-center">
+            <t tag="api.coming" />
+          </div>
+        </Expandable>
       </div>
     </div>
   </Page>
@@ -79,6 +92,46 @@ table {
   .btn {
     @media (max-width: $sm) {
       margin: 2em 0;
+    }
+  }
+
+  .card {
+    margin: 1em;
+    width: 16vw;
+
+    @media (max-width: $sm) {
+      width: 60vw;
+    }
+
+    .image {
+      height: 9vh;
+      overflow: hidden;
+      width: 16vw;
+
+      @media (max-width: $sm) {
+        height: fit-content;
+        width: 60vw;
+      }
+
+      img {
+        max-width: inherit;
+        max-height: inherit;
+        height: inherit;
+        width: inherit;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .coming {
+    border: 1px dashed darken($white, 10%);
+    border-radius: 1em;
+    padding: 2em;
+  }
+
+  .flex-row {
+    @media (max-width: $sm) {
+      flex-direction: column;
     }
   }
 }

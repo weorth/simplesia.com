@@ -1,10 +1,15 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { Invoices, Tax, User } from '../../mock'
+import { useRoute, useRouter } from 'vue-router'
 
 import Page from '../../components/Page.vue'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 
+const route = useRoute()
 const router = useRouter()
+
+const date = route.params.date
+const [requests, cost, status, userId] = Invoices[date]
 
 function onClose(ev) {
   ev.preventDefault()
@@ -12,6 +17,8 @@ function onClose(ev) {
 
   router.go(-1)
 }
+
+
 </script>
 
 <template>
@@ -26,40 +33,27 @@ function onClose(ev) {
     <div class="card">
       <div class="align-center flex-row justify-space-between">
         <div class="flex-col">
-          <span><t tag="number" />: 234234234</span>
-          <span><t tag="date" />: 2023/06</span>
+          <span><t tag="date" />: {{ date }}</span>
           <span><t tag="from" />: <t tag="company" /></span>
-          <span><t tag="to" />: Customer Name</span>
+          <span><t tag="to" />: {{ User.name() }}</span>
         </div>
-        <h3 class="status red">Waiting</h3>
+        <h3 :class="['status', {'green': status == 'paid', 'red': status == 'unpaid'}]"><t :tag="status" /></h3>
         <div class="total">
-          $234.50
+          <t tag="$" />{{ cost }}
         </div>
       </div>
       <table>
         <tr>
           <th><t tag="api" /></th>
-          <th><t tag="request" qty="2" /></th>
+          <th><t tag="request" :qty="requests.toString()" /></th>
           <th><t tag="cost" /></th>
           <th><t tag="tax" /></th>
         </tr>
         <tr>
-          <td>License plates (BR)</td>
-          <td>12,345</td>
-          <td>$234.45</td>
-          <td>$12.56</td>
-        </tr>
-        <tr>
-          <td>Traffic signs (BR)</td>
-          <td>10,807</td>
-          <td>$201.18</td>
-          <td>$10.22</td>
-        </tr>
-        <tr>
-          <td>Vehicle damage</td>
-          <td>457</td>
-          <td>$7.38</td>
-          <td>$0.25</td>
+          <td><t tag="general" /></td>
+          <td>{{ requests }}</td>
+          <td><t tag="$" />{{ cost }}</td>
+          <td><t tag="$" />{{ cost * Tax }}</td>
         </tr>
       </table>
     </div>

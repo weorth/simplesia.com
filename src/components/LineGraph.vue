@@ -1,33 +1,33 @@
 <script setup>
 import { computed, ref } from 'vue'
 
-import { Colors } from '../config'
 import { Line } from 'vue-chartjs'
 
 const props = defineProps({
   data: Object,
 })
 
-const colors = Object.values(Colors)
+const colors = Object.values(['green'])
 function getColor() {
   return colors[Math.floor(Math.random() * colors.length)]
 }
 
 const data = computed(() => {
-  const seen = new Set();
-  for (let i = 0; i < props.data.datasets.length; i++) {
+  const seen = new Set()
+  const tmp = props.data
+  for (let i = 0; i < tmp.datasets.length; i++) {
     let color = getColor()
     while (seen.has(color)) {
       color = getColor()
     }
     seen.add(color)
-    props.data.datasets[i].backgroundColor = color
+    tmp.datasets[i].backgroundColor = color
   }
-  return props.data
+  return tmp
 })
 const options = ref({
   aspectRation: 2,
-  maintainAspectRation: true,
+  maintainAspectRatio: true,
   resizeDelay: 1000,
   responsive: true,
 })

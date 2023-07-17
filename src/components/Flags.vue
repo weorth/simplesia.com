@@ -2,6 +2,7 @@
 import { useLanguageStore } from "../i18n/store"
 
 defineProps({
+  bigger: { type: Boolean, default: false },
   footer: { type: Boolean, default: false },
 })
 
@@ -14,10 +15,10 @@ function setLanguage(language) {
 
 <template>
   <span class="align-center flex-row justify-space-evenly links">
-    <div @click="setLanguage('en')" class="link">
+    <div @click="setLanguage('en')" :class="['link', {'bigger': bigger}]">
       <span class="fi fi-us"></span>
     </div>
-    <div @click="setLanguage('pt')" class="link">
+    <div @click="setLanguage('pt')" :class="['link', {'bigger': bigger}]">
       <span class="fi fi-br"></span>
     </div>
   </span>
@@ -27,12 +28,16 @@ function setLanguage(language) {
 .links {
   .link {
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1em;
     line-height: 2em;
     margin: 0 0.5em;
 
     @media (max-width: $sm) {
       font-size: 0.75em;
+    }
+
+    &.bigger {
+      font-size: 5em;
     }
   }
 }

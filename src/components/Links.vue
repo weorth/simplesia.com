@@ -12,9 +12,6 @@ defineProps({
     <router-link class="link" to="/apis">
       <t tag="api" qty="2" />
     </router-link>
-    <router-link class="link" to="/support">
-      <t tag="support" />
-    </router-link>
     <router-link class="link" to="/login">
       <t tag="account" />
     </router-link>

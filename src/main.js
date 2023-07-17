@@ -1,5 +1,5 @@
 
-import "/node_modules/flag-icons/css/flag-icons.min.css";
+import '/node_modules/flag-icons/css/flag-icons.min.css'
 import './styles/main.scss'
 
 import { createApp } from 'vue'
@@ -15,14 +15,16 @@ import Home from './pages/public/Home.vue'
 import Login from './pages/public/Login.vue'
 import Privacy from './pages/public/Privacy.vue'
 import Register from './pages/public/Register.vue'
-import Support from './pages/public/Support.vue'
 import Terms from './pages/public/Terms.vue'
 
 import Billing from './pages/private/Billing.vue'
+import Dashboard from './pages/private/Dashboard.vue'
 import Invoice from './pages/private/Invoice.vue'
 import Keys from './pages/private/Keys.vue'
 import Logout from './pages/private/Logout.vue'
-import Usage from './pages/private/Usage.vue'
+import Settings from './pages/private/Settings.vue'
+import Support from './pages/private/Support.vue'
+import Ticket from './pages/private/Ticket.vue'
 
 import {
   Chart as ChartJS,
@@ -56,14 +58,16 @@ const router = createRouter({
         { path: '/login', component: Login },
         { path: '/privacy', component: Privacy },
         { path: '/register', component: Register },
-        { path: '/support', component: Support },
         { path: '/terms', component: Terms },
 
-        { path: '/private', component: Usage },
+        { path: '/private', component: Dashboard },
         { path: '/private/billing', component: Billing },
-        { path: '/private/invoice', component: Invoice },
+        { path: '/private/invoice/:date', component: Invoice },
         { path: '/private/keys', component: Keys },
         { path: '/private/logout', component: Logout },
+        { path: '/private/settings', component: Settings },
+        { path: '/private/support', component: Support },
+        { path: '/private/ticket/:id', component: Ticket },
     ],
 })
 

@@ -6,14 +6,31 @@
 .flex-col {
   display: flex;
   flex-direction: column;
+
+  & .flex-full { height: 100%; }
 }
 .flex-full { flex: 1; }
 .flex-row {
   display: flex;
   flex-direction: row;
+
+  & .flex-full { width: 100%; }
 }
+.flex-wrap { flex-wrap: wrap; }
 
 .justify-center { justify-content: center; }
 .justify-space-around { justify-content: space-around; }
 .justify-space-between { justify-content: space-between; }
 .justify-space-evenly { justify-content: space-evenly; }
+
+.m { margin: 1em; }
+.m-b { margin-bottom: 1em; }
+.m-l { margin-left: 1em; }
+.m-r { margin-right: 1em; }
+.m-t { margin-top: 1em; }
+
+.p { padding: 1em; }
+.p-b { padding-bottom: 1em; }
+.p-l { padding-left: 1em; }
+.p-r { padding-right: 1em; }
+.p-t { padding-top: 1em; }

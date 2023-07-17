@@ -3,11 +3,12 @@ import { ref } from 'vue'
 
 import { EyeSlashIcon, EyeIcon } from '@heroicons/vue/24/solid'
 
-const show = ref(true)
-
-defineProps({
+const props = defineProps({
+  show: { type: Boolean, default: false },
   title: String,
 })
+
+const show = ref(props.show)
 
 function onToggle(ev) {
   ev.preventDefault()
