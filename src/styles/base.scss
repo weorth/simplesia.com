@@ -1,0 +1,21 @@
+
+html, body {
+  display: flex;
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100vw;
+
+  @media (max-width: $sm) {
+    font-size: 12px;
+  }
+}
+
+#app {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}

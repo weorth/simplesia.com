@@ -7,9 +7,15 @@ $red: #ff0000;
 $white: #ffffff;
 $yellow: #fedd00;
 
+$gray: darken($white, 10%);
+$grayer: darken($white, 20%);
+
 // Font
 $bold: 600;
 $thin: 100;
 
 // Size
+$body: 90vh;
+$footer: 5vh;
+$header: 5vh;
 $sm: 1024px;

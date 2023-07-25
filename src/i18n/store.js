@@ -1,48 +1,53 @@
-import { computed, ref } from 'vue'
+
 import { defineStore } from 'pinia'
+import { get } from '@/core/utils'
+import { ref } from 'vue'
 
-import en from './en'
-import pt from './pt'
+export const i18nStore = defineStore('i18n', () => {
+  const _current = ref(null)
+  const _countries = {}
 
-export const useLanguageStore = defineStore('i18n', () => {
-  const language = ref('en')
-  const languages = ref({ en, pt })
-
-  function $reset() {
-    language.value = 'en'
-    languages.value = { en, pt }
+  function getCountries() {
+    return Object.values(_countries)
   }
 
-  const getLanguage = computed(() => language)
-
-  function setLanguage(newLanguage) {
-    language.value = newLanguage
+  function getCountry() {
+    return _current.value
   }
 
-  function translate(tag, qty) {
-    let message = `[${tag}:${qty}]`
-    qty = Number(qty)
+  function register(country) {
+    if (!_current.value) _current.value = country
+    _countries[country.toCode()] = country
+  }
 
-    const options = languages.value[language.value][tag]
-    if (!options) {
-      return message
+  function setCountry(country) {
+    _current.value = country
+  }
+
+  function translate(path, qty = 1) {
+    const current = getCountry()
+
+    let code = current.toCode()
+    let translation = `[$${code}-${path}-${qty}]`
+
+    const translations = current.getTranslations()
+    const value = get(translations, path)
+    if (!value) return translation
+
+    if (Array.isArray(value)) {
+      const index = qty > value.length ? value.length : qty
+      return value[index-1]
     }
 
-    if (Array.isArray(options)) {
-      message = qty > options.length
-        ? options[options.length-1]
-        : options[qty-1]
-    } else {
-      message = options
-    }
-    return message
+    return value
   }
 
   return {
-    language,
-    $reset,
-    getLanguage,
-    setLanguage,
+    getCountries,
+    getCountry,
+    setCountry,
+
+    register,
     translate,
   }
 })

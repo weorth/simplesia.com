@@ -4,12 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 
 const customElements = [
-  'graph-line',
-  'guideline',
-  'legends',
   'lottie-player',
-  'note',
-  'tooltip',
 ]
 
 // https://vitejs.dev/config/
@@ -20,7 +15,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "./src/styles/_variables.scss" as *;`,
+        additionalData: `@use "./src/styles/include.scss" as *;`,
       },
     },
   },
