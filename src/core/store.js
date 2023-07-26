@@ -6,6 +6,7 @@ import { Categories } from '@/core/constants'
 import Service from '@/services/mock'
 
 export const AppStore = defineStore('app', () => {
+  const account = ref(null)
   const service = ref(new Service())
 
   const authenticated = computed(() => {
@@ -28,6 +29,7 @@ export const AppStore = defineStore('app', () => {
     clear()
     try {
       await service.value.postLogin(email, password)
+      account.value = await service.value.getAccount()
     } catch (err) {
       error.value = err
       throw err
@@ -54,6 +56,19 @@ export const AppStore = defineStore('app', () => {
     }
   }
 
+  async function usage() {
+    clear()
+    try {
+      if (!account.value) {
+        account.value = await service.value.getAccount()
+      }
+      return await service.value.getUsages(account.value.id)
+    } catch (err) {
+      error.value = err
+      throw err
+    }
+  }
+
   return {
     authenticated,
     error,
@@ -63,5 +78,6 @@ export const AppStore = defineStore('app', () => {
     login,
     logout,
     products,
+    usage,
   }
 })

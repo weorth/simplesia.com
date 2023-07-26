@@ -77,8 +77,13 @@ export default class Mock extends Service {
     Mock._instance = this
   }
 
-  authorize() {
-    if (!this.token || this.token === '') throw new Error('401 Unauthorized')
+  authorize(retry = false) {
+    if (!this.token || this.token === '') {
+      if (retry) throw new Error('401 Unauthorized')
+
+      this.token = localStorage.getItem('simplesia.token')
+      return this.authorize(true)
+    }
     return true
   }
 
@@ -107,30 +112,31 @@ export default class Mock extends Service {
   async getLogout() {
     this.authorize()
     this.token = ''
+    localStorage.setItem('simplesia.token', null)
   }
 
   // Billing
 
   async getInvoices(accountId) {
     this.authorize()
-    return this.invoices.find(o => has(o, 'accountId', accountId))
+    return this.invoices.filter(o => has(o, 'account', accountId))
   }
 
   async getUsages(accountId) {
     this.authorize()
-    return this.usages.find(o => has(o, 'accountId', accountId))
+    return this.usages.filter(o => has(o, 'account', accountId))
   }
 
   // Support
 
   async getMessages(ticketId) {
     this.authorize()
-    return this.tickets.find(o => has(o, 'ticketId', ticketId))
+    return this.tickets.filter(o => has(o, 'ticketId', ticketId))
   }
 
   async getTickets(accountId) {
     this.authorize()
-    return this.tickets.find(o => has(o, 'accountId', accountId))
+    return this.tickets.filter(o => has(o, 'account', accountId))
   }
 
   // Public
@@ -146,9 +152,11 @@ export default class Mock extends Service {
   async postLogin(email, password) {
     if (this.account.email === email && this.account.password === password) {
       this.token = uuid()
+      localStorage.setItem('simplesia.token', this.token)
       return this.account
     } else {
       this.token = ''
+      localStorage.setItem('simplesia.token', null)
       throw new Error('401 Unauthorized')
     }
   }

@@ -13,6 +13,8 @@ defineProps({
 
 <style lang="scss" scoped>
 .tab {
+  @include flex(column);
+
   display: none;
 
   &.active {

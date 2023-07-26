@@ -25,6 +25,10 @@ export const i18nStore = defineStore('i18n', () => {
   }
 
   function translate(path, qty = 1) {
+    if (!isNaN(path)) {
+      return ''
+    }
+
     const current = getCountry()
 
     let code = current.toCode()
