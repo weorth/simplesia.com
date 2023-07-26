@@ -15,12 +15,11 @@ import { Countries } from '@/i18n/constants'
 
 <style lang="scss" scoped>
 .menu {
-  @include flex(row);
   @include flex-center;
 
   @media (max-width: $sm) {
     font-size: 1em;
-    flex-direction: row !important;
+    flex-direction: row;
   }
 
   &-item {

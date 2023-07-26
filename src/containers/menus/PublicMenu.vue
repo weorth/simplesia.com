@@ -5,7 +5,7 @@ import { ref } from 'vue'
 const links = ref([
   { href: '/', label: 'home', qty: 1 },
   { href: '/products', label: 'product', qty: 2 },
-  { href: '/login', label: 'login', qty: 1 },
+  { href: '/login', label: 'manage', qty: 1 },
 ])
 </script>
 
@@ -19,8 +19,11 @@ const links = ref([
 
 <style lang="scss" scoped>
 .menu {
-  @include flex(row);
   @include flex-center;
+
+  @media (max-width: $sm) {
+    flex-direction: row;
+  }
 
   &-item {
     font-size: 1.25em;
@@ -30,14 +33,6 @@ const links = ref([
     &:last-child {
       margin-right: 0;
     }
-
-    @media (max-width: $sm) {
-      margin-right: 0;
-    }
-  }
-
-  @media (max-width: $sm) {
-    margin-top: 1em;
   }
 }
 </style>

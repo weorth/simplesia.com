@@ -10,6 +10,7 @@ const props = defineProps({
 const data = {}
 const form = ref(null)
 const textFields = new Set([
+  'email',
   'number',
   'password',
   'text',

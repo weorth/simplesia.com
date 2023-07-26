@@ -129,13 +129,15 @@ function handleRegister() {
       </language-panel>
     </div>
     <div class="shout">
-      <language-panel code="en_us">
-        <p>Let's build something together!</p>
-      </language-panel>
-      <language-panel code="pt_br">
-        <p>liquam erat volutpat. Ut pretium sodales dui, in tempus elit tristique ac.</p>
-      </language-panel>
-      <link-button href="/register" label="start-now" />
+      <div class="">
+        <language-panel code="en_us">
+          <p>Let's build something together!</p>
+        </language-panel>
+        <language-panel code="pt_br">
+          <p>liquam erat volutpat. Ut pretium sodales dui, in tempus elit tristique ac.</p>
+        </language-panel>
+        <link-button href="/register" label="start-now" />
+      </div>
     </div>
   </full-page>
 </template>
@@ -193,6 +195,10 @@ function handleRegister() {
 
   @media (max-width: $sm) {
     padding: 0 1em;
+  }
+
+  p {
+    margin: 0;
   }
 }
 

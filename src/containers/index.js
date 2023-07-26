@@ -20,6 +20,8 @@ import FullPage from '@/containers/pages/FullPage.vue'
 import TabItem from '@/containers/tabs/TabItem.vue'
 import TabsList from '@/containers/tabs/TabsList.vue'
 
+import AppFooter from '@/containers/AppFooter.vue'
+import AppHeader from '@/containers/AppHeader.vue'
 import HeroArea from '@/containers/HeroArea.vue'
 
 export default {
@@ -44,5 +46,7 @@ export default {
   'tab-item': TabItem,
   'tabs-list': TabsList,
 
+  'app-footer': AppFooter,
+  'app-header': AppHeader,
   'hero-area': HeroArea,
 }

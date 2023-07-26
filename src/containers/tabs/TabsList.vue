@@ -64,6 +64,10 @@ function updateTabs() {
 
   &-list {
     @include flex(row);
+
+    @media (max-width: $sm) {
+      flex-direction: row;
+    }
   }
 
   &-tab {

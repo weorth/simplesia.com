@@ -7,8 +7,8 @@ $red: #ff0000;
 $white: #ffffff;
 $yellow: #fedd00;
 
-$gray: darken($white, 10%);
-$grayer: darken($white, 20%);
+$gray: darken($white, 5%);
+$grayer: darken($white, 10%);
 
 // Font
 $bold: 600;
@@ -19,3 +19,4 @@ $body: 90vh;
 $footer: 5vh;
 $header: 5vh;
 $sm: 1024px;
+$sub-header: 4vh;

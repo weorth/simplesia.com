@@ -18,8 +18,11 @@ const links = ref([
 
 <style lang="scss" scoped>
 .menu {
-  @include flex(row);
   @include flex-center;
+
+  @media (max-width: $sm) {
+    flex-direction: row;
+  }
 
   &-item {
     color: $blue;
@@ -28,14 +31,6 @@ const links = ref([
     &:last-child {
       margin-right: 0;
     }
-
-    @media (max-width: $sm) {
-      margin-right: 0;
-    }
-  }
-
-  @media (max-width: $sm) {
-    margin-top: 1em;
   }
 }
 </style>

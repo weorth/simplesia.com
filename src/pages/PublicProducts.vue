@@ -54,12 +54,12 @@ onMounted(() => getProducts())
                 <div class="">{{ product.latency }}ms</div>
               </div>
               <div class="item">
-                <div class=""><t t="cost" />:</div>
-                <div class=""><t t="$" />{{ product.cost }}/req</div>
-              </div>
-              <div class="item">
                 <div class=""><t t="status" />:</div>
                 <div class=""><t :t="product.status" /></div>
+              </div>
+              <div class="item">
+                <div class=""><t t="cost" />:</div>
+                <div class=""><t t="$" />{{ product.cost }}/req</div>
               </div>
             </div>
           </card-item>
@@ -124,6 +124,10 @@ onMounted(() => getProducts())
       img {
         height: 180px;
         width: 100%;
+
+        @media (max-width: $sm) {
+          height: 240px;
+        }
       }
     }
 

@@ -3,6 +3,7 @@
 import { useRouter } from 'vue-router'
 
 const fields = [
+  { label: 'email', name: 'email', type: 'email', value: '' },
   { label: 'username', name: 'username', type: 'text', value: '' },
   { label: 'password', name: 'password', type: 'password', value: '' },
 ]
