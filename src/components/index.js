@@ -9,12 +9,14 @@ import CodeBlock from '@/components/embeds/CodeBlock.vue'
 
 import LineGraph from '@/components/graphs/LineGraph.vue'
 
+import InputFactory from '@/components/inputs/InputFactory.vue'
 import SelectInput from '@/components/inputs/SelectInput.vue'
 import TextareaInput from '@/components/inputs/TextareaInput.vue'
 import TextInput from '@/components/inputs/TextInput.vue'
 
 import AppLoading from '@/components/AppLoading.vue'
 import AppLogo from '@/components/AppLogo.vue'
+import TitleBar from '@/components/TitleBar.vue'
 
 export default {
   'lottie-animation': LottieAnimation,
@@ -27,10 +29,12 @@ export default {
 
   'line-graph': LineGraph,
 
+  'input-factory': InputFactory,
   'select-input': SelectInput,
   'textarea-input': TextareaInput,
   'text-input': TextInput,
 
   'app-loading': AppLoading,
   'app-logo': AppLogo,
+  'title-bar': TitleBar,
 }

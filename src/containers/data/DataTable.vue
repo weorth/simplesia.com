@@ -15,7 +15,18 @@ defineProps({
     </tr>
     <tr v-for="(row, idx) in rows" :key="idx">
       <td v-for="(col, idx2) in cols" :key="idx+'-'+idx2">
-        <span v-if="col.t"><t :ts="row[col.field].split('_')" /></span>
+        <span v-if="col.f"><currency :amount="row[col.field]" /></span>
+        <span v-else-if="col.t"><t :ts="row[col.field].split('_')" /></span>
+        <span v-else-if="col.list">
+          <ul>
+            <li v-for="(product, idx3) in row[col.field]" :key="idx+'-'+idx2+'-'+idx3">
+              <row-layout>
+                <t :ts="product.id.split('_')" />
+                <currency :amount="product.cost + product.tax" />
+              </row-layout>
+            </li>
+          </ul>
+        </span>
         <span v-else>{{ row[col.field] }}</span>
       </td>
     </tr>
@@ -36,10 +47,28 @@ table {
 
     &:nth-child(odd) {
       background-color: $gray;
+
+      li {
+        background-color: $white;
+      }
     }
 
     th, td {
       padding: 0.25em;
+    }
+
+    td {
+      li {
+        background-color: $gray;
+      }
+
+      .row {
+        @include flex-between;
+
+        .currency {
+          margin-right: 2em;
+        }
+      }
     }
   }
 }

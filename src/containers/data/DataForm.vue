@@ -4,20 +4,20 @@ import { ref } from 'vue'
 
 const props = defineProps({
   fields: Array,
+  onChange: Function,
   onSubmit: Function,
 })
 
 const data = {}
 const form = ref(null)
-const textFields = new Set([
-  'email',
-  'number',
-  'password',
-  'text',
-])
 
 function handleChange(name, value) {
   data[name] = value
+  try {
+    props.onChange(name, value)
+  } catch {
+    // Not provided.
+  }
 }
 
 function handleSubmit() {
@@ -34,46 +34,45 @@ function handleSubmit() {
       v-for="(field, idx) in fields"
       class="form-field"
       :key="idx">
-      <label>
-        <t :t="field.label" />
-      </label>
-      <select-input
-        v-if="field.type === 'select'"
-        :name="field.name"
-        :onChange="handleChange"
-        :options="field.options"
-        :type="field.type"
-        :value="field.value" />
-      <textarea-input
-        v-if="field.type === 'textarea'"
-        :name="field.name"
-        :onChange="handleChange"
-        :type="field.type"
-        :value="field.value" />
-      <text-input
-        v-if="textFields.has(field.type)"
-        :name="field.name"
-        :onChange="handleChange"
-        :type="field.type"
-        :value="field.value" />
+      <row-layout v-if="Array.isArray(field)">
+        <input-factory
+          v-for="(subField, idx2) in field"
+          :field="subField"
+          :key="idx+'-'+idx2"
+          :onChange="handleChange" />
+      </row-layout>
+      <input-factory v-else
+        :field="field"
+        :onChange="handleChange" />
     </div>
-    <div class="actions">
-      <flat-button :onClick="handleSubmit" label="submit" />
+    <div v-if="onSubmit" class="actions">
+      <flat-button
+        label="submit"
+        :onClick="handleSubmit" />
     </div>
   </form>
 </template>
 
 <style lang="scss" scoped>
 .form {
-  &-field {
-    @include flex(column);
-
-    margin-bottom: 1em;
-  }
-
   .actions {
     @include flex(row);
     @include flex-center;
+  }
+
+  .row {
+    @include flex-between;
+
+    flex: 1;
+
+    .form-field {
+      flex: 1;
+      margin-right: 1em;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 }
 </style>

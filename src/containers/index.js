@@ -22,6 +22,7 @@ import TabsList from '@/containers/tabs/TabsList.vue'
 
 import AppFooter from '@/containers/AppFooter.vue'
 import AppHeader from '@/containers/AppHeader.vue'
+import AppSentry from '@/containers/AppSentry.vue'
 import HeroArea from '@/containers/HeroArea.vue'
 
 export default {
@@ -48,5 +49,6 @@ export default {
 
   'app-footer': AppFooter,
   'app-header': AppHeader,
+  'app-sentry': AppSentry,
   'hero-area': HeroArea,
 }

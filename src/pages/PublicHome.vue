@@ -28,7 +28,7 @@ function handleRegister() {
           <h3>Proin ut mauris maximus, accumsan est et, tempus dolor.</h3>
         </language-panel>
         <div class="actions">
-          <flat-button :onClick="handleRegister" label="register" yellow />
+          <flat-button :onClick="handleRegister" label="register" secondary />
           <flat-button :onClick="handleLogin" label="login" green />
         </div>
       </div>

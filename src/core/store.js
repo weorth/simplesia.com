@@ -16,13 +16,27 @@ export const AppStore = defineStore('app', () => {
       return false
     }
   })
-
-  const error = ref(null)
-
   const categories = computed(() => Categories)
+  const error = ref(null)
+  const me = computed(async () => {
+    return !account.value ? await service.value.getAccount() : account.value
+  })
 
   function clear() {
     error.value = null
+  }
+
+  async function invoices() {
+    clear()
+    try {
+      if (!account.value) {
+        account.value = await service.value.getAccount()
+      }
+      return await service.value.getInvoices(account.value.id)
+    } catch (err) {
+      error.value = err
+      throw err
+    }
   }
 
   async function login(email, password) {
@@ -40,6 +54,7 @@ export const AppStore = defineStore('app', () => {
     clear()
     try {
       await service.value.getLogout()
+      account.value = null
     } catch (err) {
       error.value = err
       throw err
@@ -56,7 +71,18 @@ export const AppStore = defineStore('app', () => {
     }
   }
 
-  async function usage() {
+  async function update(updatedAccount) {
+    clear()
+    try {
+      await service.value.getUsages(updatedAccount)
+      account.value = updatedAccount
+    } catch (err) {
+      error.value = err
+      throw err
+    }
+  }
+
+  async function usages() {
     clear()
     try {
       if (!account.value) {
@@ -71,13 +97,16 @@ export const AppStore = defineStore('app', () => {
 
   return {
     authenticated,
-    error,
-
     categories,
+    error,
+    me,
+
     clear,
+    invoices,
     login,
     logout,
     products,
-    usage,
+    update,
+    usages,
   }
 })

@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 
 const app = AppStore()
 const fields = [
-  { label: 'email', name: 'email', type: 'text', value: '' },
+  { label: 'email', name: 'email', type: 'email', value: '' },
   { label: 'password', name: 'password', type: 'password', value: '' },
 ]
 const router = useRouter()

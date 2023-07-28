@@ -42,7 +42,7 @@ function handleValidate() {
 </template>
 
 <style lang="scss" scoped>
-input {
+select {
   @include form-field;
 }
 </style>

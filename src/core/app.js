@@ -7,13 +7,11 @@ import { createRouter } from '@/core/router'
 // i18n
 import { Countries } from '@/i18n/constants'
 import { i18nStore } from '@/i18n/store'
-import CountryFlag from '@/i18n/components/CountryFlag.vue'
-import LanguagePanel from '@/i18n/components/LanguagePanel.vue'
-import TranslateToken from '@/i18n/components/TranslateToken.vue'
 
 // UI
 import components from '@/components'
 import containers from '@/containers'
+import i18nComponents from '@/i18n'
 import SimplesiaApp from '@/SimplesiaApp.vue'
 
 // Graph
@@ -43,12 +41,7 @@ export function runApp() {
     i18n.register(country)
   }
 
-  app.component('country-flag', CountryFlag)
-  app.component('language-panel', LanguagePanel)
-  // eslint-disable-next-line vue/multi-word-component-names
-  app.component('t', TranslateToken)
-
-  for (let current of [components, containers]) {
+  for (let current of [i18nComponents, components, containers]) {
     for (let [k, v] of Object.entries(current)) {
       app.component(k, v)
     }

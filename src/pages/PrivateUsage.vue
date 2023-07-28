@@ -12,7 +12,7 @@ const cols = ref([
 ])
 const i18n = i18nStore()
 const usages = ref([])
-const year = ref(null)
+const year = ref((new Date()).getFullYear())
 const years = ref([])
 
 const graphData = computed(() => {
@@ -52,7 +52,7 @@ function selectYear(newYear) {
 }
 
 onMounted(async () => {
-  const usage = await app.usage()
+  const usage = await app.usages()
 
   const yrs = new Set()
   for (let u of usage) {
@@ -65,28 +65,30 @@ onMounted(async () => {
 </script>
 
 <template>
-  <full-page>
-    <h1><t t="usage" /></h1>
-    <div class="years">
-      <div><t t="year" qty="2" />:</div>
-      <div @click="selectYear(null)" class="year" :class="!year ? 'active' : ''">
-        <t t="all" />
-      </div>
-      <div v-for="yr in years" :key="yr">
-        <div @click="selectYear(yr)" class="year" :class="year === yr ? 'active' : ''">
-          {{ yr }}
+  <app-sentry>
+    <full-page>
+      <title-bar title="usage" />
+      <div class="years">
+        <div><t t="year" qty="2" />:</div>
+        <div @click="selectYear(null)" class="year" :class="!year ? 'active' : ''">
+          <t t="all" />
+        </div>
+        <div v-for="yr in years" :key="yr">
+          <div @click="selectYear(yr)" class="year" :class="year === yr ? 'active' : ''">
+            {{ yr }}
+          </div>
         </div>
       </div>
-    </div>
-    <tabs-list>
-      <tab-item active title="graph">
-        <line-graph :data="graphData" />
-      </tab-item>
-      <tab-item title="table">
-        <data-table :cols="cols" :rows="rows.reverse()" />
-      </tab-item>
-    </tabs-list>
-  </full-page>
+      <tabs-list>
+        <tab-item active title="graph">
+          <line-graph :data="graphData" />
+        </tab-item>
+        <tab-item title="table">
+          <data-table :cols="cols" :rows="rows.reverse()" />
+        </tab-item>
+      </tabs-list>
+    </full-page>
+  </app-sentry>
 </template>
 
 <style lang="scss" scoped>

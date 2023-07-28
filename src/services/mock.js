@@ -42,8 +42,10 @@ export default class Mock extends Service {
       new Product('v_type_cl_br_1', 'v', 'v_type_cl_br', 'none', 'https://placehold.co/400x300', 1500, 0.0025, 0.0),
     ]
 
-    for (let year = 2021; year <= (new Date()).getFullYear(); year++) {
-      for (let month = 0; month < 12; month++) {
+    const date = new Date()
+    for (let year = 2021; year <= date.getFullYear(); year++) {
+      const maxMonth = year === date.getFullYear() ? date.getMonth() : 12
+      for (let month = 0; month <= maxMonth; month++) {
         const products = []
         for (let i = 0; i < random(4); i++) {
           const product = this.products[random(this.products.length-1)]
@@ -61,7 +63,9 @@ export default class Mock extends Service {
           this.usages.push(new Usage(uuid(), this.account.id, product.id, month, year, product.requests))
         }
 
-        this.invoices.push(new Invoice(uuid(), this.account.id, month, year, products))
+        const invoice = new Invoice(uuid(), this.account.id, month, year, products)
+        invoice.status = year === date.getFullYear() && month == maxMonth ? 'unpaid' : 'paid'
+        this.invoices.push(invoice)
       }
     }
 
@@ -110,9 +114,8 @@ export default class Mock extends Service {
   }
 
   async getLogout() {
-    this.authorize()
     this.token = ''
-    localStorage.setItem('simplesia.token', null)
+    localStorage.removeItem('simplesia.token')
   }
 
   // Billing

@@ -9,7 +9,7 @@ defineProps({
   green: Boolean,
   red: Boolean,
   white: Boolean,
-  yellow: Boolean,
+  secondary: Boolean,
 })
 </script>
 
@@ -21,7 +21,7 @@ defineProps({
       'green': green,
       'red': red,
       'white': white,
-      'yellow': yellow,
+      'yellow': secondary,
     }">
     <t :t="label" :qty="qty" />
   </button>

@@ -3,17 +3,19 @@
 </script>
 
 <template>
-  <full-page>
-    <h1><t t="support" /></h1>
-    <tabs-list>
-      <tab-item active title="active-tickets">
-        Show a list of active tickets
-      </tab-item>
-      <tab-item title="create-ticket">
-        Create a new ticket
-      </tab-item>
-    </tabs-list>
-  </full-page>
+  <app-sentry>
+    <full-page>
+      <title-bar title="support" />
+      <tabs-list>
+        <tab-item active title="ticket">
+          Show a list of active tickets
+        </tab-item>
+        <tab-item title="open">
+          Create a new ticket
+        </tab-item>
+      </tabs-list>
+    </full-page>
+  </app-sentry>
 </template>
 
 <style lang="scss" scoped>
