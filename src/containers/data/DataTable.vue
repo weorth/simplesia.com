@@ -17,7 +17,7 @@ defineProps({
       <td v-for="(col, idx2) in cols" :key="idx+'-'+idx2">
         <span v-if="col.f"><currency :amount="row[col.field]" /></span>
         <span v-else-if="col.t"><t :ts="row[col.field].split('_')" /></span>
-        <span v-else-if="col.list">
+        <span v-else-if="col.products">
           <ul>
             <li v-for="(product, idx3) in row[col.field]" :key="idx+'-'+idx2+'-'+idx3">
               <row-layout>

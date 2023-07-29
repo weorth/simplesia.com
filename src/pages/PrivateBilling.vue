@@ -14,7 +14,7 @@ const state = ref({
 const invoiceCols = ref([
   { field: 'year', label: 'year' },
   { field: 'month', label: 'month' },
-  { field: 'products', label: 'product', qty: 2, list: true },
+  { field: 'products', label: 'product', qty: 2, products: true },
   { field: 'cost', label: 'cost', f: true },
   { field: 'tax', label: 'tax', f: true },
   { field: 'status', label: 'status', t: true },
@@ -25,6 +25,21 @@ const productCols = ref([
   { field: 'cost', label: 'cost', f: true },
   { field: 'tax', label: 'tax', f: true },
 ])
+
+const paymentFields = [
+  [
+    { name: 'number', type: 'password', required: true, min: 16, max: 16 },
+  ],
+  [
+    { name: 'month', type: 'password', required: true, min: 2, max: 2 },
+    { name: 'year', type: 'password', required: true, min: 4, max: 4 },
+    { name: 'cvc', type: 'password', required: true, min: 3, max: 4 },
+  ],
+]
+
+function handlePaymentInfo(data) {
+  app.payment(data)
+}
 
 onMounted(async () => {
   const date = new Date()
@@ -124,7 +139,18 @@ onMounted(async () => {
           <data-table :cols="invoiceCols" :rows="state.invoices.reverse()" />
         </tab-item>
         <tab-item title="payment-information">
-          Display a form to change payment information
+          <div v-if="state.account.token" class="confirmed">
+            <t t="payment-confirmed" />
+          </div>
+          <div class="info">
+            <language-panel code="en_us">
+              Fill out the form bellow to provide new credit card information for automated monthly billing.
+            </language-panel>
+            <language-panel code="pt_br">
+              Nunc vel placerat sem. Curabitur in placerat ligula, nec condimentum libero.
+            </language-panel>
+          </div>
+          <data-form :fields="paymentFields" :onSubmit="handlePaymentInfo" />
         </tab-item>
       </tabs-list>
     </full-page>
@@ -133,6 +159,28 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .page {
+  .confirmed {
+    @include flex(column);
+    @include flex-center;
+
+    border: 1px solid $green;
+    color: $green;
+    font-weight: bold;
+    margin-bottom: 2em;
+    padding: 2em 0;
+  }
+
+  .info {
+    @include flex(column);
+    @include flex-center;
+
+    border: 1px solid $blue;
+    color: $blue;
+    font-weight: bold;
+    margin-bottom: 2em;
+    padding: 2em 0;
+  }
+
   .key {
     font-weight: 200;
     min-width: 6em;

@@ -24,6 +24,8 @@ export default class Mock extends Service {
     super()
 
     this.account = new Account(uuid(), 'test@email.com', 'password', 'Test Account', 'en_us')
+    this.account.key = uuid()
+    this.account.token = uuid()
 
     this.products = [
       new Product('h_age_cl_all_1', 'h', 'h_age_cl', 'none', 'https://placehold.co/400x300', 750, 0.002, 0.0),
@@ -71,7 +73,9 @@ export default class Mock extends Service {
 
     for (let i = 0; i < 3; i++) {
       const ticketId = uuid()
-      this.tickets.push(new Ticket(ticketId, this.account.id, `Body ${i}`, `Title ${i}`))
+      const ticket = new Ticket(ticketId, this.account.id, `Body ${i}`, `Title ${i}`)
+      ticket.status = 'done'
+      this.tickets.push(ticket)
 
       for (let j = 0; j < 5; j++) {
         this.messages.push(new Message(uuid(), this.account.id, ticketId, `Message ${j}`))
@@ -142,6 +146,13 @@ export default class Mock extends Service {
     return this.tickets.filter(o => has(o, 'account', accountId))
   }
 
+  async postTicket(accountId, title, body) {
+    this.authorize()
+    const ticket = new Ticket(uuid(), accountId, body, title)
+    this.tickets.push(ticket)
+    return ticket
+  }
+
   // Public
 
   async getProducts() {
@@ -156,6 +167,9 @@ export default class Mock extends Service {
     if (this.account.email === email && this.account.password === password) {
       this.token = uuid()
       localStorage.setItem('simplesia.token', this.token)
+
+      this.account.key = uuid()
+      this.account.token = uuid()
       return this.account
     } else {
       this.token = ''

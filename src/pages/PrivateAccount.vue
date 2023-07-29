@@ -12,16 +12,16 @@ const router = useRouter()
 const profileFields = computed(() => {
   return [
     [
-      { label: 'name', name: 'name', type: 'text', value: data.value['name'] },
-      { label: 'email', name: 'email', type: 'email', value: data.value['email'] },
+      { label: 'name', name: 'name', required: true, type: 'text', value: data.value['name'] },
+      { label: 'email', name: 'email', required: true, type: 'email', value: data.value['email'] },
     ],
 
-    { label: 'street1', name: 'street1', type: 'text', value: data.value['street1'] },
-    { label: 'street2', name: 'street2', type: 'text', value: data.value['street2'] },
+    { label: 'street1', name: 'street1', required: true, type: 'text', value: data.value['street1'] },
+    { label: 'street2', name: 'street2', required: true, type: 'text', value: data.value['street2'] },
     [
-      { label: 'city', name: 'city', type: 'text', value: data.value['city'] },
-      { label: 'state', name: 'state', type: 'text', value: data.value['state'] },
-      { label: 'zip', name: 'zip', type: 'text', value: data.value['zip'] },
+      { label: 'city', name: 'city', required: true, type: 'text', value: data.value['city'] },
+      { label: 'state', name: 'state', required: true, type: 'text', value: data.value['state'] },
+      { label: 'zip', name: 'zip', required: true, type: 'text', value: data.value['zip'] },
     ],
   ]
 })

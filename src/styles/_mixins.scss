@@ -41,6 +41,7 @@
 }
 
 @mixin form-field {
+  background-color: $white;
   border: 1px solid darken($gray, 10%);
   color: $black;
   font-size: 1em;

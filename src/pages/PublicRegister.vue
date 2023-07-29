@@ -3,9 +3,9 @@
 import { useRouter } from 'vue-router'
 
 const fields = [
-  { label: 'email', name: 'email', type: 'email', value: '' },
-  { label: 'username', name: 'username', type: 'text', value: '' },
-  { label: 'password', name: 'password', type: 'password', value: '' },
+  { label: 'email', name: 'email', required: true, type: 'email', value: '' },
+  { label: 'username', name: 'username', required: true, type: 'text', value: '' },
+  { label: 'password', name: 'password', required: true, type: 'password', value: '' },
 ]
 const router = useRouter()
 

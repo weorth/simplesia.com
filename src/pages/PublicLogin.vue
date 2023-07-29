@@ -6,12 +6,13 @@ import { useRouter } from 'vue-router'
 
 const app = AppStore()
 const fields = [
-  { label: 'email', name: 'email', type: 'email', value: '' },
-  { label: 'password', name: 'password', type: 'password', value: '' },
+  { label: 'email', name: 'email', required: true, type: 'email', value: 'test@email.com' },
+  { label: 'password', name: 'password', required: true, type: 'password', value: 'password' },
 ]
 const router = useRouter()
 
 async function onSubmit(data) {
+  if (!data.email || !data.password) return
   await app.login(data.email, data.password)
   router.push('/private')
 }
@@ -31,6 +32,7 @@ onMounted(() => {
       <data-form :fields="fields" :onSubmit="onSubmit" />
       <div class="others">
         <link-button href="/register" label="need-account" />
+        <link-button href="/forgot" label="forgot-password" />
       </div>
     </card-item>
   </center-page>
@@ -38,7 +40,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .others {
-  @include flex(row);
+  @include flex(column);
   @include flex-center;
 }
 </style>

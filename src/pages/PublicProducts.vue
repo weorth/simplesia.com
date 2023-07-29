@@ -24,7 +24,7 @@ onMounted(() => getProducts())
 </script>
 
 <template>
-  <full-page>
+  <full-page maximize>
     <div class="products">
       <div class="products-categories">
         <div @click="handleCategory(null)" class="category" :class="!category ? 'active' : ''">
@@ -74,13 +74,14 @@ onMounted(() => getProducts())
   @include flex(row);
 
   &-categories {
-    min-width: 10vw;
+    margin: 0 3em 0 1em;
 
     .category {
       background-color: $white;
       color: $blue;
       cursor: pointer;
       font-size: 1.5em;
+      font-weight: 200;
       padding: 0.25em;
 
       &.active {

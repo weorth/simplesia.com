@@ -1,6 +1,6 @@
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const props = defineProps({
   fields: Array,
@@ -23,6 +23,12 @@ function handleChange(name, value) {
 function handleSubmit() {
   props.onSubmit(data)
 }
+
+onMounted(() => {
+  for (let field of props.fields) {
+    data[field.name] = field.value || undefined
+  }
+})
 </script>
 
 <template>

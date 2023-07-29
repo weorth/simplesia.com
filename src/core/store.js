@@ -61,10 +61,47 @@ export const AppStore = defineStore('app', () => {
     }
   }
 
+  async function payment({ number, month, year, cvc }) {
+    clear()
+    try {
+      await service.value.postBilling(number, month, year, cvc)
+      account.value = await service.value.getAccount()
+    } catch (err) {
+      error.value = err
+      throw err
+    }
+  }
+
   async function products() {
     clear()
     try {
       return await service.value.getProducts()
+    } catch (err) {
+      error.value = err
+      throw err
+    }
+  }
+
+  async function ticket(title, body) {
+    clear()
+    try {
+      if (!account.value) {
+        account.value = await service.value.getAccount()
+      }
+      return await service.value.postTicket(account.value.id, title, body)
+    } catch (err) {
+      error.value = err
+      throw err
+    }
+  }
+
+  async function tickets() {
+    clear()
+    try {
+      if (!account.value) {
+        account.value = await service.value.getAccount()
+      }
+      return await service.value.getTickets(account.value.id)
     } catch (err) {
       error.value = err
       throw err
@@ -105,7 +142,10 @@ export const AppStore = defineStore('app', () => {
     invoices,
     login,
     logout,
+    payment,
     products,
+    ticket,
+    tickets,
     update,
     usages,
   }
