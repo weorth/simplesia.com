@@ -28,6 +28,16 @@ export const AppStore = defineStore('app', () => {
     error.value = null
   }
 
+  async function forgot(email) {
+    clear()
+    try {
+      return await service.value.postForgot(email)
+    } catch (err) {
+      error.value = JSON.parse(err.message)
+      throw err
+    }
+  }
+
   async function invoices() {
     clear()
     try {
@@ -97,6 +107,16 @@ export const AppStore = defineStore('app', () => {
     }
   }
 
+  async function reset(email, code, password) {
+    clear()
+    try {
+      await service.value.postReset(email, code, password)
+    } catch (err) {
+      error.value = JSON.parse(err.message)
+      throw err
+    }
+  }
+
   async function ticket(title, body) {
     clear()
     try {
@@ -126,10 +146,9 @@ export const AppStore = defineStore('app', () => {
   async function update(updatedAccount) {
     clear()
     try {
-      for (let [k, v] of Object.entries(updatedAccount)) {
-        account.value[k] = v
-      }
-      await service.value.putAccount(account.value)
+      await service.value.putAccount(updatedAccount)
+      account.value = await service.value.getAccount()
+      i18n.setCountry(account.value.country)
       return account.value
     } catch (err) {
       error.value = JSON.parse(err.message)
@@ -157,12 +176,14 @@ export const AppStore = defineStore('app', () => {
     me,
 
     clear,
+    forgot,
     invoices,
     login,
     logout,
     payment,
     products,
     register,
+    reset,
     ticket,
     tickets,
     update,
