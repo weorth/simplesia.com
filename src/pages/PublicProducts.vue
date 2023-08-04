@@ -46,10 +46,8 @@ onMounted(async () => await getProducts())
       <div v-if="loading" class="products-list full">
         <app-loading />
       </div>
-      <div v-else class="products-list">
-        <div v-if="!products.length" class="coming-soon">
-          <t t="coming-soon" />
-        </div>
+      <div v-else class="products-list" :class="!products.length ? 'coming-soon' : ''">
+        <t v-if="!products.length" t="coming-soon" />
         <cards-list v-else>
           <card-item v-for="(product, idx) in products" :key="idx">
             <h3><t :ts="product.name.split('_')" /></h3>
@@ -103,18 +101,23 @@ onMounted(async () => await getProducts())
   &-list {
     @include flex(column);
 
+    &.coming-soon {
+      @include flex-center;
+
+      flex: 1;
+
+      span {
+        @include border;
+
+        font-size: 1.25em;
+        padding: 2em;
+      }
+    }
+
     &.full {
       @include flex-center;
 
       flex: 1;
-    }
-
-    .coming-soon {
-      @include border;
-
-      font-size: 2em;
-      padding: 2em;
-      text-align: center;
     }
 
     .card {
