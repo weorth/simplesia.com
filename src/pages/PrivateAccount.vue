@@ -7,7 +7,9 @@ import { useRouter } from 'vue-router'
 
 const app = AppStore()
 const data = ref({})
+const loading = ref(true)
 const router = useRouter()
+const success = ref(null)
 
 const profileFields = computed(() => {
   return [
@@ -44,23 +46,26 @@ function handleChange(name, value) {
 
 async function handleLogout() {
   await app.logout()
-  router.push('/')
+  router.push('/login')
 }
 
 async function handleSave() {
   await app.update(data.value)
-  alert('Saved!')
+  success.value = 'account-success'
+  setTimeout(() => success.value = null, 3000)
 }
 
 onMounted(async () => {
   const account = await app.me
   data.value = account
+  loading.value = false
 })
 </script>
 
 <template>
   <app-sentry>
     <full-page>
+      <app-success v-if="success" :message="success" />
       <title-bar
         :actions="[
           {label: 'save', onClick: handleSave, secondary: false},
@@ -69,7 +74,8 @@ onMounted(async () => {
         title="account" />
       <tabs-list>
         <tab-item active title="profile">
-          <data-form :fields="profileFields" :onChange="handleChange" />
+          <app-loading v-if="loading" />
+          <data-form v-else :fields="profileFields" :onChange="handleChange" />
         </tab-item>
         <tab-item title="settings">
           <data-form :fields="settingsFields" :onChange="handleChange" />

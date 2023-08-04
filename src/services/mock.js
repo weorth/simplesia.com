@@ -87,7 +87,7 @@ export default class Mock extends Service {
 
   authorize(retry = false) {
     if (!this.token || this.token === '') {
-      if (retry) throw new Error('401 Unauthorized')
+      if (retry) throw new Error(JSON.stringify({ code: 401, message: 'Unauthorized' }))
 
       this.token = localStorage.getItem('simplesia.token')
       return this.authorize(true)
@@ -95,29 +95,37 @@ export default class Mock extends Service {
     return true
   }
 
+  sleep(seconds = 1.5) {
+    return new Promise(resolve => setTimeout(resolve, random(seconds * 1000)))
+  }
+
   // Account
 
   async getAccount() {
     this.authorize()
+    await this.sleep()
     return this.account
   }
 
   async putAccount(account) {
     this.authorize()
+    await this.sleep()
     this.account = account
   }
 
   async postBilling(number, expMo, expYr, cvc) {
     this.authorize()
-    if (!number) throw new Error('missing number')
-    if (!expMo) throw new Error('missing expiration month')
-    if (!expYr) throw new Error('missing expiration year')
-    if (!cvc) throw new Error('missing cvc')
+    await this.sleep()
+    if (!number) throw new Error(JSON.stringify({ code: 400, message: 'missing number' }))
+    if (!expMo) throw new Error(JSON.stringify({ code: 400, message: 'missing expiration month' }))
+    if (!expYr) throw new Error(JSON.stringify({ code: 400, message: 'missing expiration year' }))
+    if (!cvc) throw new Error(JSON.stringify({ code: 400, message: 'missing cvc' }))
     this.account.status = 'active'
     this.account.token = uuid()
   }
 
   async getLogout() {
+    await this.sleep()
     this.token = ''
     localStorage.removeItem('simplesia.token')
   }
@@ -126,11 +134,13 @@ export default class Mock extends Service {
 
   async getInvoices(accountId) {
     this.authorize()
+    await this.sleep()
     return this.invoices.filter(o => has(o, 'account', accountId))
   }
 
   async getUsages(accountId) {
     this.authorize()
+    await this.sleep()
     return this.usages.filter(o => has(o, 'account', accountId))
   }
 
@@ -138,16 +148,19 @@ export default class Mock extends Service {
 
   async getMessages(ticketId) {
     this.authorize()
+    await this.sleep()
     return this.tickets.filter(o => has(o, 'ticketId', ticketId))
   }
 
   async getTickets(accountId) {
     this.authorize()
+    await this.sleep()
     return this.tickets.filter(o => has(o, 'account', accountId))
   }
 
   async postTicket(accountId, title, body) {
     this.authorize()
+    await this.sleep()
     const ticket = new Ticket(uuid(), accountId, body, title)
     this.tickets.push(ticket)
     return ticket
@@ -156,14 +169,23 @@ export default class Mock extends Service {
   // Public
 
   async getProducts() {
+    await this.sleep()
     return this.products
   }
 
   async postForgot(email) {
-    this.code = this.account.email === email ? 'DEMO_CODE' : ''
+    await this.sleep()
+    if (this.account.email === email) {
+      this.account.status = 'reset'
+      this.code = 'DEMO_CODE'
+      return this.code
+    } else {
+      throw new Error(JSON.stringify({ code: 400, message: 'Bad Request' }))
+    }
   }
 
   async postLogin(email, password) {
+    await this.sleep()
     if (this.account.email === email && this.account.password === password) {
       this.token = uuid()
       localStorage.setItem('simplesia.token', this.token)
@@ -173,21 +195,40 @@ export default class Mock extends Service {
       return this.account
     } else {
       this.token = ''
-      localStorage.setItem('simplesia.token', null)
-      throw new Error('401 Unauthorized')
+      localStorage.removeItem('simplesia.token')
+      throw new Error(JSON.stringify({ code: 401, message: 'Unauthorized' }))
     }
   }
 
   async postRegister(account) {
-    this.account = account
+    await this.sleep()
+    const requiredFields = ['country', 'email', 'name', 'password']
+    for (let field of requiredFields) {
+      if (!account[field]) {
+        throw new Error(JSON.stringify({ code: 400, message: `missing ${field}`}))
+      }
+    }
+    this.account = new Account(uuid(), account.email, account.password, account.name, account.country)
+    this.account.key = uuid()
+    this.account.status = 'active'
+    this.account.token = uuid()
+
+    this.code = ''
+
+    this.token = uuid()
+    localStorage.setItem('simplesia.token', this.token)
+
+    return this.account
   }
 
   async postReset(email, code, password) {
-    if (this.account.email === email && this.code === code) {
+    await this.sleep()
+    if (this.account.email === email && this.code === code && this.account.status === 'reset') {
       this.account.password = password
+      this.account.status = 'active'
       this.code = ''
     } else {
-      throw new Error('401 Unauthorized')
+      throw new Error(JSON.stringify({ code: 401, message: 'Unauthorized' }))
     }
   }
 }

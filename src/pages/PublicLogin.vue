@@ -1,7 +1,7 @@
 
 <script setup>
 import { AppStore } from '@/core/store'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const app = AppStore()
@@ -10,16 +10,19 @@ const fields = [
   { label: 'password', name: 'password', required: true, type: 'password', value: 'password' },
 ]
 const router = useRouter()
+const success = ref(null)
 
 async function onSubmit(data) {
   if (!data.email || !data.password) return
   await app.login(data.email, data.password)
-  router.push('/private')
+  success.value = 'login-success'
+  setTimeout(() => router.push('/private'), 1000)
 }
 
 onMounted(() => {
   if (app.authenticated) {
-    router.push('/private')
+    success.value = 'login-success'
+    setTimeout(() => router.push('/private'), 1000)
   }
 })
 </script>
@@ -28,7 +31,8 @@ onMounted(() => {
   <center-page>
     <card-item>
       <h1><t t="login" /></h1>
-      <div v-if="app.error">{{ app.error }}</div>
+      <app-error v-if="app.error" :error="app.error" />
+      <app-success v-if="success" :message="success" />
       <data-form :fields="fields" :onSubmit="onSubmit" />
       <div class="others">
         <link-button href="/register" label="need-account" />

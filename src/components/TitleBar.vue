@@ -1,9 +1,19 @@
 
 <script setup>
+import { ref } from 'vue'
+
 defineProps({
   actions: { default: () => [], type: Array },
   title: { required: true, type: String },
 })
+
+const loading = ref(false)
+
+async function handleClick(callback) {
+  loading.value = true
+  await callback()
+  loading.value = false
+}
 </script>
 
 <template>
@@ -12,9 +22,10 @@ defineProps({
     <div v-if="actions.length" class="actions">
       <flat-button
         v-for="(action, idx) in actions"
+        :disabled="loading"
         :key="idx"
         :label="action.label"
-        :onClick="action.onClick"
+        :onClick="() => handleClick(action.onClick)"
         :secondary="action.secondary" />
     </div>
   </div>

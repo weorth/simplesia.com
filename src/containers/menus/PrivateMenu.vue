@@ -5,7 +5,7 @@ import { ref } from 'vue'
 const links = ref([
   { href: '/private', label: 'usage', qty: 1 },
   { href: '/private/billing', label: 'billing', qty: 1 },
-  { href: '/private/support', label: 'support', qty: 1 },
+  // { href: '/private/support', label: 'support', qty: 1 },
   { href: '/private/account', label: 'account', qty: 1 },
 ])
 </script>

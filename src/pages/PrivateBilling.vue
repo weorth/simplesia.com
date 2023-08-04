@@ -4,12 +4,14 @@ import { AppStore } from '@/core/store'
 import { onMounted, ref } from 'vue'
 
 const app = AppStore()
+const loading = ref(true)
 const state = ref({
   account: {},
   invoice: { products: [] },
   invoices: [],
   usage: { requests: 0 },
 })
+const success = ref(null)
 
 const invoiceCols = ref([
   { field: 'year', label: 'year' },
@@ -37,11 +39,15 @@ const paymentFields = [
   ],
 ]
 
-function handlePaymentInfo(data) {
-  app.payment(data)
+async function handlePaymentInfo(data) {
+  await app.payment(data)
+  success.value = 'billing-success'
+  setTimeout(() => success.value = null, 3000)
 }
 
 onMounted(async () => {
+  loading.value = true
+
   const date = new Date()
   const month = date.getMonth()
   const year = date.getFullYear()
@@ -60,6 +66,8 @@ onMounted(async () => {
     invoice: _invoices.find(invoice => invoice.year === year && invoice.month === month),
     usage: { month, requests, year },
   }
+
+  loading.value = false
 })
 </script>
 
@@ -69,7 +77,8 @@ onMounted(async () => {
       <title-bar title="billing" />
       <tabs-list>
         <tab-item active title="current">
-          <column-layout>
+          <app-loading v-if="loading" />
+          <column-layout v-else>
             <h2><t t="account" /></h2>
             <row-layout>
               <div class="key">
@@ -150,6 +159,8 @@ onMounted(async () => {
               Nunc vel placerat sem. Curabitur in placerat ligula, nec condimentum libero.
             </language-panel>
           </div>
+          <app-error v-if="app.error" :error="app.error" />
+          <app-success v-if="success" :message="success" />
           <data-form :fields="paymentFields" :onSubmit="handlePaymentInfo" />
         </tab-item>
       </tabs-list>

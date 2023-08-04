@@ -23,7 +23,7 @@ export default class Account extends Model {
     super(id)
 
     this.country = country
-    this.status = 'open' // or 'active', 'suspended'
+    this.status = 'open' // or 'active', 'reset', 'suspended'
     this.tax = 0.0
 
     this.email = email

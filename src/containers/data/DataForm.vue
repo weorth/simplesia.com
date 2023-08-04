@@ -10,6 +10,7 @@ const props = defineProps({
 
 const data = {}
 const form = ref(null)
+const loading = ref(false)
 
 function handleChange(name, value) {
   data[name] = value
@@ -20,8 +21,13 @@ function handleChange(name, value) {
   }
 }
 
-function handleSubmit() {
-  props.onSubmit(data)
+async function handleSubmit() {
+  try {
+    loading.value = true
+    await props.onSubmit(data)
+  } finally {
+    loading.value = false
+  }
 }
 
 onMounted(() => {
@@ -53,6 +59,7 @@ onMounted(() => {
     </div>
     <div v-if="onSubmit" class="actions">
       <flat-button
+        :disabled="loading"
         label="submit"
         :onClick="handleSubmit" />
     </div>

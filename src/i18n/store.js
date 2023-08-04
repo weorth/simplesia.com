@@ -21,7 +21,7 @@ export const i18nStore = defineStore('i18n', () => {
   }
 
   function setCountry(country) {
-    _current.value = country
+    _current.value = _countries[country]
   }
 
   function translate(path, qty = 1) {

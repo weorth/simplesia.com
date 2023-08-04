@@ -14,8 +14,10 @@ import SelectInput from '@/components/inputs/SelectInput.vue'
 import TextareaInput from '@/components/inputs/TextareaInput.vue'
 import TextInput from '@/components/inputs/TextInput.vue'
 
+import AppError from '@/components/AppError.vue'
 import AppLoading from '@/components/AppLoading.vue'
 import AppLogo from '@/components/AppLogo.vue'
+import AppSuccess from '@/components/AppSuccess.vue'
 import TitleBar from '@/components/TitleBar.vue'
 
 export default {
@@ -34,7 +36,9 @@ export default {
   'textarea-input': TextareaInput,
   'text-input': TextInput,
 
+  'app-error': AppError,
   'app-loading': AppLoading,
   'app-logo': AppLogo,
+  'app-success': AppSuccess,
   'title-bar': TitleBar,
 }

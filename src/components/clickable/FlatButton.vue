@@ -1,6 +1,7 @@
 
 <script setup>
 defineProps({
+  disabled: Boolean,
   label: String,
   onClick: Function,
   qty: { default: 1, type: Number },
@@ -22,7 +23,8 @@ defineProps({
       'red': red,
       'white': white,
       'yellow': secondary,
-    }">
+    }"
+    :disabled="disabled">
     <t :t="label" :qty="qty" />
   </button>
 </template>
@@ -47,6 +49,12 @@ button {
   &:active, &:hover {
     background-color: $green;
     color: $white;
+  }
+
+  &:disabled {
+    background-color: $gray !important;
+    color: $black !important;
+    cursor: not-allowed;
   }
 
   &.blue {

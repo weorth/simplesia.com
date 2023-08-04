@@ -104,9 +104,13 @@
   "unpaid": "Unpaid",
 
   "**Sentences**": "",
+  "account-success": "Account information saved!",
+  "billing-success": "Billing information updated!",
   "coming-soon": "We are adding products all the time, so please check back soon.",
   "forgot-password": "Click here if you forgot your password.",
   "have-account": "Already have an account? Login",
   "need-account": "Need an account? Register",
-  "payment-confirmed": "Payment information confirmed and safely stored."
+  "login-success": "Welcome back!",
+  "payment-confirmed": "Payment information confirmed and safely stored.",
+  "register-success": "Registration completed!"
 }

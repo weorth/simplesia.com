@@ -3,10 +3,12 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
 import { Categories } from '@/core/constants'
+import { i18nStore } from '@/i18n/store'
 import Service from '@/services/mock'
 
 export const AppStore = defineStore('app', () => {
   const account = ref(null)
+  const i18n = i18nStore()
   const service = ref(new Service())
 
   const authenticated = computed(() => {
@@ -34,7 +36,7 @@ export const AppStore = defineStore('app', () => {
       }
       return await service.value.getInvoices(account.value.id)
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -44,8 +46,9 @@ export const AppStore = defineStore('app', () => {
     try {
       await service.value.postLogin(email, password)
       account.value = await service.value.getAccount()
+      i18n.setCountry(account.value.country)
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -56,7 +59,7 @@ export const AppStore = defineStore('app', () => {
       await service.value.getLogout()
       account.value = null
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -67,7 +70,7 @@ export const AppStore = defineStore('app', () => {
       await service.value.postBilling(number, month, year, cvc)
       account.value = await service.value.getAccount()
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -77,7 +80,19 @@ export const AppStore = defineStore('app', () => {
     try {
       return await service.value.getProducts()
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
+      throw err
+    }
+  }
+
+  async function register(account) {
+    clear()
+    try {
+      account.value = await service.value.postRegister(account)
+      i18n.setCountry(account.value.country)
+      return account.value
+    } catch (err) {
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -90,7 +105,7 @@ export const AppStore = defineStore('app', () => {
       }
       return await service.value.postTicket(account.value.id, title, body)
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -103,7 +118,7 @@ export const AppStore = defineStore('app', () => {
       }
       return await service.value.getTickets(account.value.id)
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -111,10 +126,13 @@ export const AppStore = defineStore('app', () => {
   async function update(updatedAccount) {
     clear()
     try {
-      await service.value.getUsages(updatedAccount)
-      account.value = updatedAccount
+      for (let [k, v] of Object.entries(updatedAccount)) {
+        account.value[k] = v
+      }
+      await service.value.putAccount(account.value)
+      return account.value
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -127,7 +145,7 @@ export const AppStore = defineStore('app', () => {
       }
       return await service.value.getUsages(account.value.id)
     } catch (err) {
-      error.value = err
+      error.value = JSON.parse(err.message)
       throw err
     }
   }
@@ -144,6 +162,7 @@ export const AppStore = defineStore('app', () => {
     logout,
     payment,
     products,
+    register,
     ticket,
     tickets,
     update,

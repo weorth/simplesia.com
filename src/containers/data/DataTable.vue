@@ -47,10 +47,6 @@ table {
 
     &:nth-child(odd) {
       background-color: $gray;
-
-      li {
-        background-color: $white;
-      }
     }
 
     th, td {
@@ -58,10 +54,6 @@ table {
     }
 
     td {
-      li {
-        background-color: $gray;
-      }
-
       .row {
         @include flex-between;
 

@@ -81,7 +81,8 @@ onMounted(async () => {
       </div>
       <tabs-list>
         <tab-item active title="graph">
-          <line-graph :data="graphData" />
+          <app-loading v-if="!usages.length" />
+          <line-graph v-else :data="graphData" />
         </tab-item>
         <tab-item title="table">
           <data-table :cols="cols" :rows="rows.reverse()" />

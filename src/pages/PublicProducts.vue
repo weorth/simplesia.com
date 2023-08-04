@@ -6,13 +6,20 @@ import { computed, onMounted, ref } from 'vue'
 const app = AppStore()
 const category = ref(null)
 const categories = computed(() => app.categories)
+const loading = ref(true)
 const products = ref([])
 
+function filterProducts(products) {
+  return products.filter(o => !category.value || o.category === category.value)
+}
+
 async function getProducts() {
+  loading.value = true
+
   const tmp = await app.products()
-  products.value = !category.value
-    ? tmp
-    : tmp.filter(o => o.category === category.value)
+  products.value = filterProducts(tmp)
+
+  loading.value = false
 }
 
 async function handleCategory(newCategory) {
@@ -20,7 +27,7 @@ async function handleCategory(newCategory) {
   await getProducts()
 }
 
-onMounted(() => getProducts())
+onMounted(async () => await getProducts())
 </script>
 
 <template>
@@ -36,7 +43,10 @@ onMounted(() => getProducts())
           </div>
         </div>
       </div>
-      <div class="products-list">
+      <div v-if="loading" class="products-list full">
+        <app-loading />
+      </div>
+      <div v-else class="products-list">
         <div v-if="!products.length" class="coming-soon">
           <t t="coming-soon" />
         </div>
@@ -92,6 +102,12 @@ onMounted(() => getProducts())
 
   &-list {
     @include flex(column);
+
+    &.full {
+      @include flex-center;
+
+      flex: 1;
+    }
 
     .coming-soon {
       @include border;
