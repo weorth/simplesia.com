@@ -156,7 +156,7 @@ onMounted(async () => {
               Fill out the form bellow to provide new credit card information for automated monthly billing.
             </language-panel>
             <language-panel code="pt_br">
-              Nunc vel placerat sem. Curabitur in placerat ligula, nec condimentum libero.
+              Preencha o formulário abaixo para fornecer as informações do novo cartão de crédito para pagamentos mensais automáticos.
             </language-panel>
           </div>
           <app-error v-if="app.error" :error="app.error" />

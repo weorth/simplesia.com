@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { i18nStore } from '@/i18n/store'
 
 const props = defineProps({
+  join: { default: ' ', type: String },
   qty: { default: 1, type: [Number, String] },
   t: String,
   ts: Array,
@@ -24,7 +25,7 @@ const translated = computed(() => {
   } else {
     translations.push(store.translate(props.t, qty))
   }
-  return translations.join(' ')
+  return translations.join(props.join)
 })
 </script>
 

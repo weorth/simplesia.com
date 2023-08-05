@@ -9,7 +9,7 @@
       Privacy policy of the USA
     </language-panel>
     <language-panel code="pt_br">
-      Privacy policy of Brazil
+      Política de privacidade do Brasil
     </language-panel>
   </full-page>
 </template>

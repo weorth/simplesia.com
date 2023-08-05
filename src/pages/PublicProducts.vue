@@ -50,7 +50,7 @@ onMounted(async () => await getProducts())
         <t v-if="!products.length" t="coming-soon" />
         <cards-list v-else>
           <card-item v-for="(product, idx) in products" :key="idx">
-            <h3><t :ts="product.name.split('_')" /></h3>
+            <h3><t :ts="product.name.split('_')" join="/" /></h3>
             <img :src="product.image" />
             <div class="items">
               <div class="item">

@@ -9,7 +9,7 @@
       Terms of the USA
     </language-panel>
     <language-panel code="pt_br">
-      Terms of Brazil
+      Termos de Serviços do Brasil
     </language-panel>
   </full-page>
 </template>
