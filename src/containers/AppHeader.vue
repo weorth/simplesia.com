@@ -22,6 +22,8 @@ const isPrivate = computed(() => location.hash.includes('/private'))
 .header {
   @include flex(column);
 
+  max-width: 100vw;
+
   &-public {
     @include flex(row);
     @include flex-between;
