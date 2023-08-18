@@ -91,58 +91,60 @@ function handleRegister() {
       </language-panel>
     </div>
     <div class="testimonials">
-      <language-panel code="en_us">
-        <div class="testimonial">
-          <h4>How can I access the APIs?</h4>
-          <p>The APIs are divided into seven major groups: Animal, Food, Human, Medical, Plant, Security, and Vehicles. These groups were selected among the most basic ones for initial development in our platform. To use our APIs you need to register and access the key for requests. In this beta version the keys are offered under demand. Ask yours!</p>
-        </div>
-        <div class="testimonial">
-          <h4>What is the cost to use the platform and APIs?</h4>
-          <p>The price of the platform is charged per month. This value is paid only when you create the key to access the APIs. Besides the monthly costs, you pay the number of requests in each API (see our Product page to know the values). The monthly extract for payments and requests can be seen in your profile.</p>
-        </div>
-        <div class="testimonial">
-          <h4>Why do I have to pay a monthly fee to use the platform?</h4>
-          <p>In order to offer a better experience to all of our customers, we need to keep software environments and managing tools working and ready to automatically scale according to your process. We are transparent and we do not want to hide abusive profits, but offer quality and agility to you.</p>
-        </div>
-        <div class="testimonial">
-          <h4>What if the API request does not work?</h4>
-          <p>Our system detects all errors caused internally and does not add count on your amount of total requests.</p>
-        </div>
-        <div class="testimonial">
-          <h4>How can I get my customized model without any development costs?</h4>
-          <p>All of customization requests are assessed by our team before the final pricing. Models already under development or models of simple conceptions might be for free to our clients.</p>
-        </div>
-        <div class="testimonial">
-          <h4>Is it safe to add my credit card on my account?</h4>
-          <p>We do not keep your credit card information on our database. Moreover, we have all of the certificates that proof the identity and integrity of the company.</p>
-        </div>
-      </language-panel>
-      <language-panel code="pt_br">
-        <div class="testimonial">
-          <h4>Como eu posso ter acesso às APIs?</h4>
-          <p>As APIs são divididas em sete grandes grupos: Animal, Comida, Humano, Medicina, Planta, Segurança e Veículos. Estes grupos foram selecionados entre os mais básicos para desenvolvimento inicial da nossa plataforma. Para utilizá-las você precisa ter cadastro e acesso à chave de requisições. Nesta versão beta as chaves são oferecidas sob demanda. Peça a sua chave de acesso!</p>
-        </div>
-        <div class="testimonial">
-          <h4>Qual é o custo de uso da plataforma e APIs?</h4>
-          <p>O custo da plataforma é cobrado mensalmente. Esse valor é pago apenas quando você cria a chave para acesso nas APIs. Além do custo mensal, você paga por requisições feitas por APIs (veja nossa página de Produtos para saber os valores de cada uma). O extrato mensal de pagamentos e requisições podem ser vistos no seu perfil.</p>
-        </div>
-        <div class="testimonial">
-          <h4>Por que preciso pagar uma mensalidade para usar a plataforma?</h4>
-          <p>Para oferecermos uma melhor experiência de uso para os nossos clientes, precisamos manter ambientes de software e ferramentas de suporte funcionando e prontos para escalabilidade automática dos seus processos. Nós não queremos esconder rentabilidade abusivas, apenas focamos em oferecer qualidade e agilidade para você.</p>
-        </div>
-        <div class="testimonial">
-          <h4>E se a requisição da API não funcionar?</h4>
-          <p>Nosso sistema detecta todos os erros causados internamente e não acrescenta contagem nas requisições totais.</p>
-        </div>
-        <div class="testimonial">
-          <h4>Como posso obter meu modelo customizado sem custos de desenvolvimento?</h4>
-          <p>Todas as requisições de customização de modelos são análisadas pelos nossos times antes de qualquer precificação final. Modelos já em desenvolvimento ou de simples concepção podem sair sem custos para os nossos clientes.</p>
-        </div>
-        <div class="testimonial">
-          <h4>É seguro adicionar um cartão de crédito na minha conta?</h4>
-          <p>Nós não mantemos a sua informação de cartão de crédito salvas em nosso banco de dados. Além disso, temos as certificações de segurança que comprovam a identidade e integridade da empresa.</p>
-        </div>
-      </language-panel>
+      <div class="container">
+        <language-panel code="en_us">
+          <div class="testimonial">
+            <h4>How can I access the APIs?</h4>
+            <p>The APIs are divided into seven major groups: Animal, Food, Human, Medical, Plant, Security, and Vehicles. These groups were selected among the most basic ones for initial development in our platform. To use our APIs you need to register and access the key for requests. In this beta version the keys are offered under demand. Ask yours!</p>
+          </div>
+          <div class="testimonial">
+            <h4>What is the cost to use the platform and APIs?</h4>
+            <p>The price of the platform is charged per month. This value is paid only when you create the key to access the APIs. Besides the monthly costs, you pay the number of requests in each API (see our Product page to know the values). The monthly extract for payments and requests can be seen in your profile.</p>
+          </div>
+          <div class="testimonial">
+            <h4>Why do I have to pay a monthly fee to use the platform?</h4>
+            <p>In order to offer a better experience to all of our customers, we need to keep software environments and managing tools working and ready to automatically scale according to your process. We are transparent and we do not want to hide abusive profits, but offer quality and agility to you.</p>
+          </div>
+          <div class="testimonial">
+            <h4>What if the API request does not work?</h4>
+            <p>Our system detects all errors caused internally and does not add count on your amount of total requests.</p>
+          </div>
+          <div class="testimonial">
+            <h4>How can I get my customized model without any development costs?</h4>
+            <p>All of customization requests are assessed by our team before the final pricing. Models already under development or models of simple conceptions might be for free to our clients.</p>
+          </div>
+          <div class="testimonial">
+            <h4>Is it safe to add my credit card on my account?</h4>
+            <p>We do not keep your credit card information on our database. Moreover, we have all of the certificates that proof the identity and integrity of the company.</p>
+          </div>
+        </language-panel>
+        <language-panel code="pt_br">
+          <div class="testimonial">
+            <h4>Como eu posso ter acesso às APIs?</h4>
+            <p>As APIs são divididas em sete grandes grupos: Animal, Comida, Humano, Medicina, Planta, Segurança e Veículos. Estes grupos foram selecionados entre os mais básicos para desenvolvimento inicial da nossa plataforma. Para utilizá-las você precisa ter cadastro e acesso à chave de requisições. Nesta versão beta as chaves são oferecidas sob demanda. Peça a sua chave de acesso!</p>
+          </div>
+          <div class="testimonial">
+            <h4>Qual é o custo de uso da plataforma e APIs?</h4>
+            <p>O custo da plataforma é cobrado mensalmente. Esse valor é pago apenas quando você cria a chave para acesso nas APIs. Além do custo mensal, você paga por requisições feitas por APIs (veja nossa página de Produtos para saber os valores de cada uma). O extrato mensal de pagamentos e requisições podem ser vistos no seu perfil.</p>
+          </div>
+          <div class="testimonial">
+            <h4>Por que preciso pagar uma mensalidade para usar a plataforma?</h4>
+            <p>Para oferecermos uma melhor experiência de uso para os nossos clientes, precisamos manter ambientes de software e ferramentas de suporte funcionando e prontos para escalabilidade automática dos seus processos. Nós não queremos esconder rentabilidade abusivas, apenas focamos em oferecer qualidade e agilidade para você.</p>
+          </div>
+          <div class="testimonial">
+            <h4>E se a requisição da API não funcionar?</h4>
+            <p>Nosso sistema detecta todos os erros causados internamente e não acrescenta contagem nas requisições totais.</p>
+          </div>
+          <div class="testimonial">
+            <h4>Como posso obter meu modelo customizado sem custos de desenvolvimento?</h4>
+            <p>Todas as requisições de customização de modelos são análisadas pelos nossos times antes de qualquer precificação final. Modelos já em desenvolvimento ou de simples concepção podem sair sem custos para os nossos clientes.</p>
+          </div>
+          <div class="testimonial">
+            <h4>É seguro adicionar um cartão de crédito na minha conta?</h4>
+            <p>Nós não mantemos a sua informação de cartão de crédito salvas em nosso banco de dados. Além disso, temos as certificações de segurança que comprovam a identidade e integridade da empresa.</p>
+          </div>
+        </language-panel>
+      </div>
     </div>
     <div class="shout">
       <div class="">
@@ -249,21 +251,23 @@ function handleRegister() {
   flex-wrap: wrap;
   padding: 3em 4em;
 
-  .testimonial {
+  .container {
     @include box;
 
     background-color: $white;
-    padding: 2em;
-    margin: 1em;
-    max-width: 20vw;
 
-    @media (max-width: $sm) {
-      height: max-content;
-      max-width: 90vw;
-    }
+    .testimonial {
+      padding: 1em 2em;
 
-    p {
-      font-size: 1em;
+      h4 {
+        font-size: 1.25em;
+        margin: 0;
+        padding: 0;
+      }
+
+      p {
+        font-size: 1em;
+      }
     }
   }
 }
